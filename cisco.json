@@ -1,0 +1,116 @@
+{
+	// Place your snippets for cisco here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+    // NOTE ABOUT FILE
+    // - Start all prifixes with the character "c" to allow all options snippet options to appear when you are to find a specific snippet.
+    // - Please keep place all snippets into appropriate groups. The file stucture is below.
+    //      - Initial configurations
+    //      - Layer 2 
+    //      - Layer 3 
+    //      - protocol
+
+    // Initial Configurations
+    "Cisco Initial Configuration": {
+        "prefix": "cInitial",
+        "scope": "cisco",
+        "body": [
+            "hostname <name you want>",
+            "enable secret <PASSWORD>",
+            "username <USERNAME> secret <PASSWORD>",
+            "line con 0",
+            "logging synchronous",
+            "login local",
+            "line vty 0 4",
+            "logging synchronous",
+            "login local"
+        ],
+        "description": "Cisco Initial Configuration"
+    },
+    "VLAN Creation": {
+        "prefix": "vlan",
+        "scope": "cisco",
+        "body": [
+            "vlan ",
+            "name ",
+        ],
+        "description": "Cisco vlan creation"
+    },
+        // you can add more here
+
+    // Layer 2 configurations
+    "Layer 2 SVI creation": {
+        "prefix": "cSviL2",
+        "scope": "cisco",
+        "body": [
+            "interface vlan <number of vlan>",
+            "   description <NAME>",
+            "   ip address <IP> <SUBNET MASK>",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Cisco SVI syntax for Layer 2"
+    },
+        // you can add more here
+
+    // Layer 3 configurations
+    "Layer 3 SVI creation": {
+        "prefix": "cSviL3",
+        "scope": "cisco",
+        "body": [
+            "! For HSRP type \"cStandby\" where you wish to add code",
+            "interface vlan <number of vlan>",
+            "   description <NAME>",
+            "   ip address <IP> <SUBNET MASK>",
+            "   ip helper-address <IP TO DHCP POOL>",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Cisco SVI syntax for Layer 3"
+    },
+    "HSRP standby commands": {
+        "prefix": "cStandby",
+        "scope": "cisco",
+        "body": [
+            "!VLAN ID is a good convention for ID number",
+            "!preempt is commented out to warn you that it is only needed on the MASTER switch",
+            "standby <ID> ip <IP>",
+            "standby <ID> priority 110",
+            "standby <ID> timers <Seconds for next Hello> <Hold time before switching to backup>",
+            "!standby <ID> preempt"
+        ],
+        "description": "HSRP standby commands"
+    },
+    "Layer 3 interface creation": {
+        "prefix": "cL3GigaInterface",
+        "scope": "cisco",
+        "body": [
+            "interface GigabitEthernet<PORT NUMBER>",
+            "   description <NAME>",
+            "   ip address <IP> <SUBNET MASK>",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Cisco SVI syntax"
+    }
+        // you can add more here
+
+    // Protocol configurations
+    
+        // you can add more here
+}
+

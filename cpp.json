@@ -1,0 +1,288 @@
+{
+	// Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+    "Comment Block": {
+        "prefix": "cment",
+        "scope": "cpp",
+        "body": [
+            "/*",
+            "",
+            "-------",
+            "*/"
+        ],
+        "description": "Comment block"
+    },
+    "Namespace": {
+        "prefix": "NameSpace",
+        "scope": "cpp",
+        "body": [
+            "namespace {",
+            "",
+            "",
+            "}"
+        ],
+        "description": "Namespace"
+    },
+    "Class": {
+        "prefix": "Class",
+        "scope": "cpp",
+        "body": [
+            "class {",
+            "public:",
+            "",
+            "",
+            "private:",
+            "",
+            "};"
+        ],
+        "description": "Class"
+    },
+    "Main Function": {
+        "prefix": "mnfun",
+        "scope": "cpp",
+        "body": [
+            "#include <iostream>",
+            "",
+            "int main(int argc, char *argv[]) {",
+            "",
+            "return 0;",
+            "}"
+        ],
+        "description": "Main function"
+    },
+    "License": {
+        "prefix": "license",
+        "scope": "cpp",
+        "body": [
+            "Permission is hereby granted, free of charge, to any person obtaining a",
+            "copy of this software and associated documentation files (the \"Software\"),",
+            "to deal in the Software without restriction, including without limitation",
+            "the rights to use, copy, modify, merge, publish, distribute, sublicense,",
+            "and/or sell copies of the Software, and to permit persons to whom the",
+            "Software is furnished to do so, subject to the following conditions:",
+            "",
+            "The above copyright notice and this permission notice shall be included in",
+            "all copies or substantial portions of the Software.",
+            "",
+            "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR",
+            "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,",
+            "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL",
+            "THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER",
+            "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING",
+            "FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER",
+            "DEALINGS IN THE SOFTWARE."
+        ],
+        "description": "License"
+    },
+
+	"hgrd": {
+		"prefix": "hgrd",
+		"body": [
+		"/*",
+		"  File:         ${TM_FILENAME_BASE}",
+		"  Author:       Aaron Carroll",
+		"  Email:        arncarroll@gmail.com",
+		"  Created:      ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"  Modified:     ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"  License:      MIT License",
+		"  Copyright:    (C) ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} Aaron Carroll",
+		"  Dependencies",
+		"  ------------",
+		"",
+		"",
+		"  Program output",
+		"  --------------",
+		"",
+		"",
+		"*/",
+		"",
+		"#ifndef",
+		"#define",
+		"",
+		"",
+		"#endif"
+		],
+		"description": "hgrd snippet"
+	},
+	"mntest": {
+		"prefix": "mntest",
+		"body": [
+		"/*",
+		"  File:         ${TM_FILENAME_BASE}",
+		"  Author:       Aaron Carroll",
+		"  Email:        arncarroll@gmail.com",
+		"  Created:      ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"  Modified:     ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"  License:      MIT License",
+		"  Copyright:    (C) ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} Aaron Carroll",
+		"  Dependencies",
+		"  ------------",
+		"",
+		"",
+		"  Program output",
+		"  --------------",
+		"",
+		"",
+		"*/",
+		"",
+		"#include <iostream>",
+		"#include <UnitTest++.h>",
+		"using namespace UnitTest;",
+		"",
+		"TEST() {",
+		"CHECK();",
+		"}",
+		"",
+		"",
+		"int main(int argc, char *argv[]) {",
+		"",
+		"return UnitTest::RunAllTests();",
+		"}"
+		],
+		"description": "mntest snippet"
+	},
+	"mngtest": {
+		"prefix": "mngtest",
+		"body": [
+		"/*",
+		"  File:         ${TM_FILENAME_BASE}",
+		"  Author:       Aaron Carroll",
+		"  Email:        arncarroll@gmail.com",
+		"  Created:      ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"  Modified:     ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"  License:      MIT License",
+		"  Copyright:    (C) ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} Aaron Carroll",
+		"  Dependencies",
+		"  ------------",
+		"",
+		"",
+		"  Program output",
+		"  --------------",
+		"",
+		"",
+		"*/",
+		"",
+		"#include <iostream>",
+		"#include <gtest/gtest.h>",
+		"",
+		"TEST(MyTestSuite, MyTestCase) {",
+		"ASSERT_EQ();",
+		"}",
+		"",
+		"",
+		"int main(int argc, char *argv[]) {",
+		"",
+		"testing::InitGoogleTest(&argc, argv);",
+		"return RUN_ALL_TESTS();",
+		"}"
+		],
+		"description": "mngtest snippet"
+	},
+	"hgrdc": {
+		"prefix": "hgrdc",
+		"body": [
+		"/*",
+		"  File:         ${TM_FILENAME_BASE}",
+		"  Author:       Aaron Carroll",
+		"  Email:        arncarroll@gmail.com",
+		"  Created:      ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"  Modified:     ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"  License:      MIT License",
+		"  Copyright:    (C) ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} Aaron Carroll",
+		"  Dependencies",
+		"  ------------",
+		"",
+		"",
+		"  Program output",
+		"  --------------",
+		"",
+		"",
+		"*/",
+		"",
+		"",
+		"#ifndef",
+		"#define",
+		"",
+		"namespace {",
+		"",
+		"class {",
+		" public:",
+		"",
+		" private:",
+		"",
+		"};",
+		"}",
+		"",
+		"#endif"
+		],
+		"description": "hgrdc snippet"
+	},
+	"mncpp": {
+		"prefix": "mncpp",
+		"body": [
+		"/*",
+		"  File:         ${TM_FILENAME_BASE}",
+		"  Author:       Aaron Carroll",
+		"  Email:        arncarroll@gmail.com",
+		"  Created:      ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"  Modified:     ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"  License:      MIT License",
+		"  Copyright:    (C) ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} Aaron Carroll",
+		"  Dependencies",
+		"  ------------",
+		"",
+		"",
+		"  Program output",
+		"  --------------",
+		"",
+		"",
+		"*/",
+		"",
+		"#include <iostream>",
+		"",
+		"int main(int argc, char *argv[]) {",
+		"",
+		"return 0;",
+		"}"
+		],
+		"description": "mncpp snippet"
+	},
+	"hblk": {
+		"prefix": "hblk",
+		"body": [
+		"/*",
+		"  File:         ${TM_FILENAME_BASE}",
+		"  Author:       Aaron Carroll",
+		"  Email:        arncarroll@gmail.com",
+		"  Created:      ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"  Modified:     ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"  License:      MIT License",
+		"  Copyright:    (C) ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} Aaron Carroll",
+		"  Dependencies",
+		"  ------------",
+		"",
+		"",
+		"  Program output",
+		"  --------------",
+		"",
+		"",
+		"*/"
+		],
+		"description": "hblk snippet"
+	}
+	
+    // you can add more here add a comma after the } bracket if you wish to add more.
+}
+
