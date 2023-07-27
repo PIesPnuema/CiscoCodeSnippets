@@ -1,23 +1,23 @@
 ## Table of Contents
-- [[#About vsCodeSnippets|About vsCodeSnippets]]
-- [[#How to Download|How to Download]]
-	- [[#How to Download#Download using PowerShell CLI via git clone in|Download using PowerShell CLI via git clone in]]
-	- [[#How to Download#Download using ZIP|Download using ZIP]]
-		- [[#Download using ZIP#Cant find the directory?|Cant find the directory?]]
-- [[#Dependencies|Dependencies]]
-	- [[#Cant find the directory?#Cplusplus Snippets|Cplusplus Snippets]]
-	- [[#Cant find the directory?#Cisco Snippets|Cisco Snippets]]
-		- [[#Download using ZIP#Install|Install]]
-- [[#Want to make changes and customize your snippets?|Want to make changes and customize your snippets?]]
-	- [[#Want to make changes and customize your snippets?#Changing the name used to paste snippet|Changing the name used to paste snippet]]
-	- [[#Want to make changes and customize your snippets?#Changing the configs in the body of the snippet|Changing the configs in the body of the snippet]]
-- [[#How to use the snippets|How to use the snippets]]
-	- [[#Install#Cisco.json prefix Structure|Cisco.json prefix Structure]]
+- [About vsCodeSnippets](#About%20vsCodeSnippets)
+- [How to Download](#How%20to%20Download)
+	- [Download using PowerShell CLI via git clone in](#Download%20using%20PowerShell%20CLI%20via%20git%20clone%20in)
+	- [Download using ZIP](#Download%20using%20ZIP)
+		- [Cant find the directory?](#Download using ZIP#Cant%20find%20the%20directory?)
+- [Dependencies](#Dependencies)
+	- [Cplusplus Snippets](#Cant%20find%20the%20directory?#Cplusplus%20Snippets)
+	- [Cisco Snippets](#Cant%20find%20the%20directory?#Cisco%20Snippets)
+		- [Install](#Download%20using%20ZIP#Install)
+- [Want to make changes and customize your snippets?](#Want%20to%20make%20changes%20and%20customize%20your%20snippets?)
+	- [Changing the name used to paste snippet](#Want%20to%20make%20changes%20and%20customize%20your%20snippets?#Changing%20the%20name%20used%20to%20paste%20snippet)
+	- [Changing the configs in the body of the snippet](#Want%20to%20make%20changes%20and%20customize%20your%20snippets?#Changing%20the%20configs%20in%20the%20body%20of%20the%20snippet)
+- [How to use the snippets](#How%20to%20use%20the%20snippets)
+	- [Cisco.json prefix Structure](#Install#Cisco.json%20prefix%20Structure)
 
 ## About vsCodeSnippets
 - Code Snippets for vsCode. 
 	- Allows the user to autofill common code sections with a short abbreviation.
-	- These abbreviation are configurable to your liking. Click [[#Want to make changes and customize your snippets?|Here]] to see how.
+	- These abbreviation are configurable to your liking. Click [Here](#Want%20to%20make%20changes%20and%20customize%20your%20snippets?) to see how.
 
 ## How to Download 
 - Here you will find various method of download. 
@@ -30,7 +30,7 @@
 cd C:\Users\<CHANGE THIS TO YOUR USER NAME>\AppData\Roaming\Code\User\snippets
 ```
 
-- If you cant find this file location go to [[#Cant find the directory?]]
+- If you cant find this file location go to [Cant find the directory?](#Download using ZIP#Cant%20find%20the%20directory?)
 
 - NOTE: If you already have configurations inside this directory you may want to run the following command inside another directory and  `mv` or `cp`  only the files you wish to add to your existing configuration to not cause duplicate name collisions or linking errors.
 
