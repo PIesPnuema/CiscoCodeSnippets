@@ -1,3 +1,5 @@
+![ExmapleVideo](https://youtu.be/LhDdf-rcp3s)
+
 ## Table of Contents
 
 - [About vsCodeSnippets](#about-vscodesnippets)
