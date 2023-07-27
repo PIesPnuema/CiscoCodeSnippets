@@ -1,4 +1,4 @@
-<iframe src="https://giphy.com/embed/O0l0qpipQXT6WCJ68J" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/O0l0qpipQXT6WCJ68J">via GIPHY</a></p>
+![Exmaple Video](https://media.giphy.com/media/O0l0qpipQXT6WCJ68J/giphy.gif)
 
 ## Table of Contents
 
