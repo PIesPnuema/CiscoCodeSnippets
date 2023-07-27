@@ -1,6 +1,3 @@
-#### Configure Cisco IOS faster!
-![Exmaple Video](https://media.giphy.com/media/O0l0qpipQXT6WCJ68J/giphy.gif)
-
 ## Table of Contents
 
 - [About vsCodeSnippets](#about-vscodesnippets)
@@ -22,6 +19,11 @@
 - Code Snippets for vsCode. 
 	- Allows the user to autofill common code sections with a short abbreviation.
 	- These abbreviation are configurable to your liking. Click [Here](#Want%20to%20make%20changes%20and%20customize%20your%20snippets?) to see how.
+- Configure Cisco IOS faster!
+
+
+![Exmaple Video](https://media.giphy.com/media/O0l0qpipQXT6WCJ68J/giphy.gif)
+
 
 ## How to Download 
 - Here you will find various method of download. 
@@ -76,9 +78,10 @@ Figure (0-2)
 
 - When the file opens find the file path at the top of the editor.  Figure 0-3 and figure 0-4 shows the where you can find the path.
 
-![path image](/resources/figure0-3.png)
+![figure (0-3)](/resources/figure0-3.png)
 figure (0-3)
-![closer look at path image](/resources/figure0-4.png)
+
+![figure (0-4)](/resources/figure0-4.png)
 figure (0-4)
 
 - Open CLI and Navigate to the file path you found in the previous steps. 
@@ -98,13 +101,15 @@ git clone https://github.com/twoThreeFiveEight/vsCodeSnippets.git
 ##### Cplusplus Snippets
 - You will need to have some LSP like clangd to create a cpp.json file. 
 - I am using C/C++ by Microsoft
-![c/c++ dependency](/resources/figure1-1.png)
+
+![Figure (1-1)](/resources/figure1-1.png)
 Figure (1-1)
 
 ##### Cisco Snippets
 - You will need the Cisco IOS Syntax extension in vsCode to be able to add a json file containing the cisco configurations found inside this repo.
 - I am using the Cisco IOS Syntax extension by jamiewoodio
-![cisco IOS dependency](/resources/figure1-2.png)
+
+![Figure (1-2)](/resources/figure1-2.png)
 Figure (1-2)
 
 
