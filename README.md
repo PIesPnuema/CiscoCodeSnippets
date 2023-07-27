@@ -3,7 +3,7 @@
 - [How to Download](#How%20to%20Download)
 	- [Download using PowerShell CLI via git clone in](#Download%20using%20PowerShell%20CLI%20via%20git%20clone%20in)
 	- [Download using ZIP](#Download%20using%20ZIP)
-		- [Cant find the directory?](#Download using ZIP#Cant%20find%20the%20directory?)
+		- [Cant find the directory?](#Download%20using%20ZIP#Cant%20find%20the%20directory?)
 - [Dependencies](#Dependencies)
 	- [Cplusplus Snippets](#Cant%20find%20the%20directory?#Cplusplus%20Snippets)
 	- [Cisco Snippets](#Cant%20find%20the%20directory?#Cisco%20Snippets)
