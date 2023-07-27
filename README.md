@@ -1,18 +1,19 @@
 ## Table of Contents
-- [About vsCodeSnippets](#About%20vsCodeSnippets)
-- [How to Download](#How%20to%20Download)
-	- [Download using PowerShell CLI via git clone in](#Download%20using%20PowerShell%20CLI%20via%20git%20clone%20in)
-	- [Download using ZIP](#Download%20using%20ZIP)
-		- [Cant find the directory?](#Download%20using%20ZIP#Cant%20find%20the%20directory?)
-- [Dependencies](#Dependencies)
-	- [Cplusplus Snippets](#Cant%20find%20the%20directory?#Cplusplus%20Snippets)
-	- [Cisco Snippets](#Cant%20find%20the%20directory?#Cisco%20Snippets)
-		- [Install](#Download%20using%20ZIP#Install)
-- [Want to make changes and customize your snippets?](#Want%20to%20make%20changes%20and%20customize%20your%20snippets?)
-	- [Changing the name used to paste snippet](#Want%20to%20make%20changes%20and%20customize%20your%20snippets?#Changing%20the%20name%20used%20to%20paste%20snippet)
-	- [Changing the configs in the body of the snippet](#Want%20to%20make%20changes%20and%20customize%20your%20snippets?#Changing%20the%20configs%20in%20the%20body%20of%20the%20snippet)
-- [How to use the snippets](#How%20to%20use%20the%20snippets)
-	- [Cisco.json prefix Structure](#Install#Cisco.json%20prefix%20Structure)
+
+- [About vsCodeSnippets](#about-vscodesnippets)
+- [How to Download](#how-to-download)
+	- [Download using PowerShell CLI via git clone in](#download-using-powershell-cli-via-git-clone-in)
+	- [Download using ZIP](#download-using-zip)
+		- [Can't find the directory?](#cant-find-the-directory)
+- [Dependencies](#dependencies)
+	- [Cplusplus Snippets](#cplusplus-snippets)
+	- [Cisco Snippets](#cisco-snippets)
+		- [Install](#install)
+- [Want to make changes and customize your snippets?](#want-to-make-changes-and-customize-your-snippets)
+	- [Changing the name used to paste snippet](#changing-the-name-used-to-paste-snippet)
+	- [Changing the configs in the body of the snippet](#changing-the-configs-in-the-body-of-the-snippet)
+- [How to use the snippets](#how-to-use-the-snippets)
+	- [Cisco.json prefix Structure](#ciscojson-prefix-structure)
 
 ## About vsCodeSnippets
 - Code Snippets for vsCode. 
