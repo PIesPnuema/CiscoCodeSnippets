@@ -15,7 +15,7 @@
 
 	"blank template": {
 		"prefix": "jsonTmp",
-		"scope": "JSON",
+		"scope": "JSON with Comments",
 		"body": [
 			"\" name\": {",
 			"   \"prefix\": \"\",",

@@ -1,27 +1,50 @@
 {
-	// Place your snippets for cisco here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// Publisher:       Aaron Carroll 
+    // File:            cisco.json
+    // Description:     vsCode user snippets configurations for cisco 
+    //
+    // NOTE ABOUT FILE:
+    // -----------------------------------------------------------------------------------------------------------------------------------
+    // - Start all "prefix" varibles with the character "c" to allow all options snippet options to appear when you are to find a specific snippet.
+    //   Prefix is the name you will use to add snippet to your configurations. In the example below we prefix the "prefix variable" with "c".
+    //  EX: 
+    //       "Cisco Initial Configuration": {
+    //          "prefix": "cInitial",                // HERE 
+    //          "scope": "cisco",
+    //          "body": [
+    //              "hostname"
+    //              "... 
+    //          ]
+    //
+    //
+    // - Please keep place all snippets into appropriate groups. The file stucture is below.
+    //      - Initial configurations
+    //      - Layer 2 configurations
+    //      - Layer 2 configurations
+    //      - Protocol configurations
+    // 
+    //
+    // Place your snippets for cisco here. Each snippet is defined under a snippet name and has a prefix, body and 
 	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
 	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
 	// same ids are connected.
 	// Example:
 	// "Print to console": {
 	// 	"prefix": "log",
+    //  "scope": "cisco",
 	// 	"body": [
 	// 		"console.log('$1');",
 	// 		"$2"
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-
-    // NOTE ABOUT FILE
-    // - Start all prifixes with the character "c" to allow all options snippet options to appear when you are to find a specific snippet.
-    // - Please keep place all snippets into appropriate groups. The file stucture is below.
-    //      - Initial configurations
-    //      - Layer 2 
-    //      - Layer 3 
-    //      - protocol
+    //
 
     // Initial Configurations
+    // -----------------------
+    // This section is for cisco Initial Configurations. Feel free to add notes that are helpful to know when adding configurations
+    //
+
     "Cisco Initial Configuration": {
         "prefix": "cInitial",
         "scope": "cisco",
@@ -47,15 +70,21 @@
         ],
         "description": "Cisco vlan creation"
     },
-        // you can add more here
+
+        // you can add more Intial configurtions above here
+
 
     // Layer 2 configurations
+    // -----------------------
+    // This section is for cisco Layer 2 configurations. Feel free to add notes that are helpful to know when adding configurations
+    //
+
     "Layer 2 SVI creation": {
-        "prefix": "cSviL2",
+        "prefix": "cL2Svi",
         "scope": "cisco",
         "body": [
             "interface vlan <number of vlan>",
-            "   description <NAME>",
+            "   description <Remote Management>",
             "   ip address <IP> <SUBNET MASK>",
             "   shutdown",
             "   no shutdown",
@@ -63,14 +92,76 @@
         ],
         "description": "Cisco SVI syntax for Layer 2"
     },
-        // you can add more here
-
-    // Layer 3 configurations
-    "Layer 3 SVI creation": {
-        "prefix": "cSviL3",
+    "Layer 2 Trunk Switchport creation": {
+        "prefix": "cL2TrunkSwitchport",
         "scope": "cisco",
         "body": [
-            "! For HSRP type \"cStandby\" where you wish to add code",
+            "interface <port 0/2>",
+            "   description <toSomeLocation>",
+            "   switchport trunk encapsulation dot1q <IP> <SUBNET MASK>",
+            "   switchport mode trunk",
+            "   switchport trunk allowed vlan <10,20,30,40>",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Layer 2 Trunk Switchport creation"
+    },
+    "Layer 2 Access Switchport creation": {
+        "prefix": "cL2AccessSwitchport",
+        "scope": "cisco",
+        "body": [
+            "interface <port 0/2>",
+            "   description <toSomeLocation>",
+            "   switchport mode access",
+            "   switchport access vlan <VLAN_ID>",
+            "   spanning-tree portfast",
+            "   spanning-tree bpduguard enable",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Layer 2 Access Switchport creation"
+    },
+    "Layer 2 Port-Channel creation": {
+        "prefix": "cl2Portchannel",
+        "scope": "cisco",
+        "body": [
+            "interface port-channel<PORT CHANNEL NUMBER>",
+            "   description to<Some location>-PortChannel",
+            "   switchport trunk encapsulation dot1q",
+            "   switchport mode trunk",
+            "   switchport trunk allowed vlan <20,30,60>",
+            "   shutdown",
+            "   no shutdown",
+            "exit",
+            "",
+            "interface range <portX/X-X>",
+            "   description to<Some location>-PortChannel",
+            "   switchport trunk encapsulation dot1q",
+            "   switchport mode trunk",
+            "   switchport trunk allowed vlan <20,30,60>",
+            "   channel-group <PORT CHANNEL NUMBER> mode active",
+            "   shutdown",
+            "   no shutdown",
+            "exit",
+        ],
+        "description": "Layer 2 Port-Channel creation"
+    },
+
+        // you can add more Layer 2 configurations above here
+
+
+    // Layer 3 configurations
+    // ----------------------
+    // This section is for cisco Layer 3 configurations. Feel free to add notes that are helpful to know when adding configurations
+    //
+
+    "Layer 3 SVI creation": {
+        "prefix": "cL3Svi",
+        "scope": "cisco",
+        "body": [
+            "! For HSRP type \"cpStandby\" where you wish to add code",
             "interface vlan <number of vlan>",
             "   description <NAME>",
             "   ip address <IP> <SUBNET MASK>",
@@ -81,8 +172,116 @@
         ],
         "description": "Cisco SVI syntax for Layer 3"
     },
+    "Layer 3 interface creation": {
+        "prefix": "cl3Interface",
+        "scope": "cisco",
+        "body": [
+            "interface <PORT 0/0>",
+            "   description <toSomeLocation>",
+            "   ip address <IP> <SUBNET MASK>",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Layer 3 interface creation"
+    },
+    "Layer 3 GigabitEthernet interface creation": {
+        "prefix": "cl3GigaInterface",
+        "scope": "cisco",
+        "body": [
+            "interface GigabitEthernet<PORT NUMBER>",
+            "   description <toSomeLocation>",
+            "   ip address <IP> <SUBNET MASK>",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Layer 3 GigabitEthernet interface creation"
+    },
+    "Layer 3 fastEthernet interface creation": {
+        "prefix": "cl3FastInterface",
+        "scope": "cisco",
+        "body": [
+            "interface FastEthernet<PORT NUMBER>",
+            "   description <toSomeLocation>",
+            "   ip address <IP> <SUBNET MASK>",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Layer 3 GigabitEthernet interface creation"
+    },
+    "Layer 3 Port-Channel creation": {
+        "prefix": "cl3Portchannel",
+        "scope": "cisco",
+        "body": [
+            "interface port-channel<PORT CHANNEL NUMBER>",
+            "   description to <Some location>-PortChannel",
+            "   no switchport",
+            "   ip address <IP> <SUBNET>",
+            "   shutdown",
+            "   no shutdown",
+            "exit",
+            "",
+            "interface range <portX/X-X>",
+            "   description toPaNGFWSeaIceHQ01-PortChannel",
+            "   no switchport",
+            "   no ip address", 
+            "   channel-group <PORT CHANNEL NUMBER> mode active",
+            "   shutdown",
+            "   no shutdown",
+            "exit",
+        ],
+        "description": "Layer 3 Port-Channel creation"
+    },
+
+
+        // you can add more Layer 3 configurations above here
+
+    
+    // Protocol configurations
+    // -----------------------
+    // This section is for cisco protocols. Feel free to add notes that are helpful to know when adding configurations
+    //
+
+    "IP SLA icmp-echo configurations": {
+        "prefix": "cpIpSlaIcmpEcho",
+        "scope": "cisco",
+        "body": [
+            "! icmp-echo option. There are ",
+            "! \"track\" tracking number and \"ip sla\" numbers are arbitrary",
+            "ip sla <ip sla ID#>",
+            "   icmp-echo <ip address to ping> source-ip <IP>",
+            "   frequency <# in Seconds (10 is normal)>",
+            "exit",
+            "",
+            "! start service",
+            "ip sla schedule <ip sla ID#> life forever start-time now",
+            "",
+            "! Creating a tracking object of Track ID#",
+            "track <Track ID#> ip sla <ip sla ID#> reachability",
+            "",
+            "!Attaches \"track object\" to route which tells the router to only use this route if the tracking object is up",
+            "ip route <IP> <SUBNET> <NEXT HOP> track <Track ID#>",
+        ],
+        "description": "IP SLA icmp-echo configurations"
+    },
+    "Rapid Per VLAN Spanning Tree +": {
+        "prefix": "cpRpvst+",
+        "scope": "cisco",
+        "body": [
+            "spanning-tree mode rapid-pvst",
+            " ",
+            "! vlan syntax: Lower Priority number is the prefered route.", 
+            "! Default to Lowest MAC address for Root Bridge",
+            "vlan <VLAN ID>",
+            "name <CampusData>",
+            "spanning-tree vlan <VLAN ID> priority 0",
+        ],
+        "description": "Rapid Per VLAN Spanning Tree + creation"
+    },
     "HSRP standby commands": {
-        "prefix": "cStandby",
+        "prefix": "cpStandby",
         "scope": "cisco",
         "body": [
             "!VLAN ID is a good convention for ID number",
@@ -93,24 +292,200 @@
             "!standby <ID> preempt"
         ],
         "description": "HSRP standby commands"
-    },
-    "Layer 3 interface creation": {
-        "prefix": "cL3GigaInterface",
+    },     
+    "OSPF Area Configuration": {
+        "prefix": "cpOspf",
         "scope": "cisco",
         "body": [
-            "interface GigabitEthernet<PORT NUMBER>",
-            "   description <NAME>",
-            "   ip address <IP> <SUBNET MASK>",
-            "   shutdown",
-            "   no shutdown",
-            "exit"
+            "router ospf <PROCESS ID>",
+            "   router-id <IP>",
+            "   log-adjacency-changes",
+            "   network <IP> <WILD CARD MASK> area 0",
+            "   network <IP> <WILD CARD MASK> area 1",
+            "   area <AREA ID> authentication message-digest",
+            "   !passive-interface <GigabitEthernet0/1>",
+            "   !passive-interface default",
+            "   !no passive-interface vlan <30>",
+            "   !no passive-interface <po14>",
+            "   !no passive-interface <G2/1>",
+            "exit",
         ],
-        "description": "Cisco SVI syntax"
-    }
-        // you can add more here
+        "description": "OSPF Area level Configuration"
+    },
+    "OSPF Interface Configuration": {
+        "prefix": "cpOspfInterface",
+        "scope": "cisco",
+        "body": [
+            "! Illustrates what can be done with the interface configuration",
+            "interface <INTERFACE>",
+            "   ip ospf <PROCESS_ID> area <AREA>",
+            "   ip ospf priority <PRIORITY>",
+            "   ip ospf cost <COST>",
+            "   ip ospf hello-interval <HELLO_INTERVAL>",
+            "   ip ospf dead-interval <DEAD_INTERVAL>",
+            "   ip ospf retransmit-interval <RETRANSMIT_INTERVAL>",
+            "   ip ospf network <NETWORK_TYPE>",
+            "   ip ospf authentication message-digest",
+            "   ip ospf message-digest-key <KEY_ID> md5 <SECRET>",
+            "interface <INTERFACE>",
+            "   ip ospf <PROCESS_ID> area <AREA>",
+            "   ip ospf priority <PRIORITY>",
+            "   ip ospf cost <COST>",
+            "   ip ospf hello-interval <HELLO_INTERVAL>",
+            "   ip ospf dead-interval <DEAD_INTERVAL>",
+            "   ip ospf retransmit-interval <RETRANSMIT_INTERVAL>",
+            "   ip ospf network <NETWORK_TYPE>",
+            "   ip ospf authentication null"
+        ],
+        "description": "OSPF Interface Configuration, showing what can be done at the interface"
+    },
+    "EIGRP Configuration": {
+        "prefix": "cpEigrp",
+        "scope": "cisco",
+        "body": [
+            "router eigrp <AS_NUMBER>",
+            "   eigrp router-id <ROUTER_ID>",
+            "   network <NETWORK> <WILDCARD_MASK>",
+            "   passive-interface default",
+            "   no passive-interface <INTERFACE>",
+            "   distribute-list <ACCESS_LIST> in",
+            "   distribute-list <ACCESS_LIST> out",
+            "   maximum-paths <MAX_PATHS>",
+            "   variance <VARIANCE>",
+            "   traffic-share balanced",
+            "   delay minimum <DELAY>",
+            "   bandwidth-percent <BANDWIDTH_PERCENT>",
+            "   auto-summary",
+            "exit",
+            "interface <INTERFACE>",
+            "   ip summary-address eigrp <AS_NUMBER> <SUMMARY_ADDRESS> <SUBNET_MASK>",
+            "   ip bandwidth-percent eigrp <AS_NUMBER> <PERCENTAGE>",
+            "   ip hello-interval eigrp <AS_NUMBER> <SECONDS>",
+            "   ip hold-time eigrp <AS_NUMBER> <SECONDS>"
+        ],
+        "description": "EIGRP Configuration"
+    },
+    "BGP Configuration": {
+        "prefix": "cpBgp",
+        "scope": "cisco",
+        "body": [
+            "router bgp <LOCAL_ASN>",
+            "   bgp log-neighbor-changes",
+            "   bgp router-id <ROUTER_ID>",
+            "   network <NETWORK> mask <SUBNET_MASK>",
+            "   neighbor <NEIGHBOR_IP> remote-as <REMOTE_ASN>",
+            "   neighbor <NEIGHBOR_IP> description <DESCRIPTION>",
+            "   neighbor <NEIGHBOR_IP> update-source <INTERFACE>",
+            "   neighbor <NEIGHBOR_IP> ebgp-multihop 2",
+            "   neighbor <NEIGHBOR_IP> password <PASSWORD>",
+            "   neighbor <NEIGHBOR_IP> timers <KEEPALIVE> <HOLDTIME>",
+            "   neighbor <NEIGHBOR_IP> route-map <ROUTE_MAP_NAME> in",
+            "   neighbor <NEIGHBOR_IP> route-map <ROUTE_MAP_NAME> out",
+            "   maximum-paths <NUMBER_OF_PATHS>"
+        ],
+        "description": "BGP Configuration"
+    },
+    "Prefix List and Route Map Configuration": {
+        "prefix": "cpPrefixRouteMap",
+        "scope": "cisco",
+        "body": [
+            "ip prefix-list <PREFIX_LIST_IN_NAME> seq 10 permit <NETWORK>",
+            "ip prefix-list <PREFIX_LIST_OUT_NAME> seq 20 deny <NETWORK>",
 
-    // Protocol configurations
-    
+            "route-map <ROUTE_MAP_IN_NAME> permit 10",
+            "   match ip address prefix-list <PREFIX_LIST_IN_NAME>",
+            "!route-map <ROUTE_MAP_IN_NAME> deny 20",
+            
+            "route-map <ROUTE_MAP_OUT_NAME> permit 10",
+            "   match ip address prefix-list <PREFIX_LIST_OUT_NAME>",
+            "!route-map <ROUTE_MAP_OUT_NAME> deny 20"
+        ],
+        "description": "Prefix List and Route Map Configuration"
+    },
+    "IPSec Tunnel Configuration": {
+        "prefix": "cpIPSecTunnel",
+        "scope": "cisco",
+        "body": [
+            "crypto isakmp policy 10",
+            "   encryption aes 256",
+            "   authentication pre-share",
+            "   group 14",
+            "crypto isakmp key <KEY> address <PEER_IP_ADDRESS>",
+            "crypto ipsec transform-set MYSET esp-aes 256 esp-sha-hmac",
+            "   mode tunnel",
+            "crypto map <MYMAP> 10 ipsec-isakmp",
+            "   set peer <PEER_IP_ADDRESS>",
+            "   set transform-set MYSET",
+            "   match address <ACCESS_CONTROL_LIST>",
+            "interface <INTERFACE>",
+            "   crypto map <MYMAP>",
+            "exit",
+        ],
+        "description": "IPSec Tunnel Configuration"
+    },
+    "Access List Configuration": {
+        "prefix": "cpAcl",
+        "scope": "cisco",
+        "body": [
+            "access-list <ACL_NUMBER> permit ip <SOURCE_IP> <WILDCARD_MASK> <DESTINATION_IP> <WILDCARD_MASK>",
+            "access-list <ACL_NUMBER> deny ip any any"
+        ],
+        "description": "Access List Configuration"
+    },
+    "NAT Overload Configuration": {
+        "prefix": "cpNatOverload",
+        "scope": "cisco",
+        "body": [
+            "interface <INTERFACE_OUTSIDE>",
+            "   ip address <OUTSIDE_IP> <SUBNET_MASK>",
+            "   ip nat outside",
+            "exit",
+            "interface <INTERFACE_INSIDE>",
+            "   ip address <INSIDE_IP> <SUBNET_MASK>",
+            "   ip nat inside",
+            "exit",
+            "ip access-list standard <ACL_NAME>",
+            "   permit <INSIDE_NETWORK> <WILDCARD_MASK>",
+            "exit",
+            "ip nat inside source list <ACL_NAME> interface <INTERFACE_OUTSIDE> overload"
+        ],
+        "description": "NAT Overload Configuration"
+    },
+    "Dynamic NAT Configuration": {
+        "prefix": "cpDynNat",
+        "scope": "cisco",
+        "body": [
+            "interface <INTERFACE_OUTSIDE>",
+            "   ip address <OUTSIDE_IP> <SUBNET_MASK>",
+            "   ip nat outside",
+            "exit",
+            "interface <INTERFACE_INSIDE>",
+            "   ip address <INSIDE_IP> <SUBNET_MASK>",
+            "   ip nat inside",
+            "exit",
+            "ip nat pool <NAT_POOL_NAME> <START_IP> <END_IP> netmask <NETMASK>",
+            "ip access-list standard <ACL_NAME>",
+            "   permit <INSIDE_NETWORK> <WILDCARD_MASK>",
+            "exit",
+            "ip nat inside source list <ACL_NAME> pool <NAT_POOL_NAME>"
+        ],
+        "description": "Dynamic NAT Configuration"
+    },
+ 
         // you can add more here
+        
+    " ": {
+        "prefix": " ",
+        "scope": "cisco",
+        "body": [
+            " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+            " "
+        ],
+        "description": "  "
+    },
 }
-
