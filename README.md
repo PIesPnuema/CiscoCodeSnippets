@@ -2,7 +2,7 @@
 
 - [About vsCodeSnippets](#about-vscodesnippets)
 - [How to Download](#how-to-download)
-	- [Download using PowerShell CLI via git clone in](#download-using-powershell-cli-via-git-clone-in)
+	- [Download using PowerShell CLI via git clone](#download-using-powershell-cli-via-git-clone)
 	- [Download using ZIP](#download-using-zip)
 		- [Can't find the directory?](#cant-find-the-directory)
 - [Dependencies](#dependencies)
@@ -29,7 +29,7 @@
 - Here you will find various method of download. 
 - The CLI method is best to be able stay up to date with any improvements using `git pull`. Using the ZIP method you will have to follow the steps found here each time you wish to update the Code Snippet Files.
 
-### Download using PowerShell CLI via git clone in 
+### Download using PowerShell CLI via git clone 
 - Copy and paste the code below to navigate to the location where vsCode stores User Code Snippets. don't forget to change the area that reads  ***\<CHANGE THIS TO YOUR USER NAME>*** to your user name. 
 
 ```
