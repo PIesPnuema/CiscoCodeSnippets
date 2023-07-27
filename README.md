@@ -61,8 +61,8 @@ git clone https://github.com/twoThreeFiveEight/vsCodeSnippets.git
 - Navigate to ***File*** then ***Preferences***
 - Click on ***Configure User Snippets***
 
-![[Pasted image 20230726214327.png]]
-Figure (0-1)
+![snippets location](/resources/figure0-1.png)
+(Figure (0-1)
 
 - When the ***Snippets File*** search bar opens click on cisco.json file
 - If cisco.json is not an option go to 
@@ -118,7 +118,7 @@ Figure (1-2)
 - Navigate to ***File*** then ***Preferences***
 - Click on ***Configure User Snippets***
 
-![[Pasted image 20230726214327.png]]
+![[figure0-1.png]]
 Figure (2-1)
 
 - When the ***Snippets File*** search bar opens click on the language you wish to add the configurations to.
