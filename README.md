@@ -10,15 +10,15 @@
 	- [Cisco Snippets](#cisco-snippets)
 		- [Install](#install)
 - [Want to make changes and customize your snippets?](#want-to-make-changes-and-customize-your-snippets)
-	- [Changing the name used to paste snippet](#changing-the-name-used-to-paste-snippet)
+	- [Changing the name used to paste snippet](#changing-the-name-used-to-paste-the-snippet)
 	- [Changing the configs in the body of the snippet](#changing-the-configs-in-the-body-of-the-snippet)
 - [How to use the snippets](#how-to-use-the-snippets)
 	- [Cisco.json prefix Structure](#ciscojson-prefix-structure)
 
 ## About vsCodeSnippets
 - Code Snippets for vsCode. 
-	- Allows the user to autofill common code sections with a short abbreviation.
-	- These abbreviation are configurable to your liking. Click [Here](#Want%20to%20make%20changes%20and%20customize%20your%20snippets?) to see how.
+	- Allows the user to autofill common code sections with short-hand abbreviations.
+	- These abbreviations are configurable to your liking. Click [Here](#want-to-make-changes-and-customize-your-snippets) to see how.
 - Configure Cisco IOS faster!
 
 
@@ -26,8 +26,8 @@
 
 
 ## How to Download 
-- Here you will find various method of download. 
-- The CLI method is best to be able stay up to date with any improvements using `git pull`. Using the ZIP method you will have to follow the steps found here each time you wish to update the Code Snippet Files.
+- Here you will find various methods of downloading. 
+- The CLI method is best to be able to stay up to date with any improvements using `git pull`. Using the ZIP method you will have to follow the steps found here each time you wish to update the Code Snippet Files.
 
 ### Download using PowerShell CLI via git clone 
 - Copy and paste the code below to navigate to the location where vsCode stores User Code Snippets. don't forget to change the area that reads  ***\<CHANGE THIS TO YOUR USER NAME>*** to your user name. 
@@ -36,7 +36,7 @@
 cd C:\Users\<CHANGE THIS TO YOUR USER NAME>\AppData\Roaming\Code\User\snippets
 ```
 
-- If you cant find this file location go to [Cant find the directory?](#Download using ZIP#Cant%20find%20the%20directory?)
+- If you can't find this file location go to [Cant find the directory?](#Download using ZIP#Cant%20find%20the%20directory?)
 
 - NOTE: If you already have configurations inside this directory you may want to run the following command inside another directory and  `mv` or `cp`  only the files you wish to add to your existing configuration to not cause duplicate name collisions or linking errors.
 
@@ -70,13 +70,13 @@ git clone https://github.com/twoThreeFiveEight/vsCodeSnippets.git
 ![snippets location](/resources/figure0-1.png)
 (Figure (0-1)
 
-- When the ***Snippets File*** search bar opens click on cisco.json file
+- When the ***Snippets File*** search bar opens click on the cisco.json file
 - If cisco.json is not an option go to 
 
-![Snippet Config drop down menu](/resources/figure0-2.png)
+![Snippet Config drop-down menu](/resources/figure0-2.png)
 Figure (0-2)
 
-- When the file opens find the file path at the top of the editor.  Figure 0-3 and figure 0-4 shows the where you can find the path.
+- When the file opens find the file path at the top of the editor.  Figure 0-3 and figure 0-4 show where you can find the path.
 
 ![figure (0-3)](/resources/figure0-3.png)
 figure (0-3)
@@ -85,7 +85,7 @@ figure (0-3)
 figure (0-4)
 
 - Open CLI and Navigate to the file path you found in the previous steps. 
-	- If you are using WSL like me you the file path will look like this
+	- If you are using WSL like me the file path will look like this
 ![look at wsl path](/resources/WSLpathlook.png)
 
 - Inside `/your/path/to/Code/User/snippets` run the following command to add the vsCodeSnippets repo files to this directory. 
@@ -106,8 +106,8 @@ git clone https://github.com/twoThreeFiveEight/vsCodeSnippets.git
 Figure (1-1)
 
 ##### Cisco Snippets
-- You will need the Cisco IOS Syntax extension in vsCode to be able to add a json file containing the cisco configurations found inside this repo.
-- I am using the Cisco IOS Syntax extension by jamiewoodio
+- You will need the Cisco IOS Syntax extension in vsCode to be able to add a JSON file containing the Cisco configurations found inside this repo.
+- I am using the Cisco IOS Syntax extension by Jamiewoodio
 
 ![Figure (1-2)](/resources/figure1-2.png)
 Figure (1-2)
@@ -120,9 +120,9 @@ Figure (1-2)
 
 ## Want to make changes and customize your snippets?
 
-- You will need to already have the repo installed for this example and have an understand on how to use it before making changes.
+- You will need to already have the repo installed for this example and have an understanding of how to use it before making changes.
 
-### Changing the name used to paste snippet
+### Changing the name used to paste the snippet
 - Open ***vsCode***
 - Navigate to ***File*** then ***Preferences***
 - Click on ***Configure User Snippets***
@@ -131,14 +131,14 @@ Figure (1-2)
 Figure (2-1)
 
 - When the ***Snippets File*** search bar opens click on the language you wish to add the configurations to.
-- in our example we will use the cisco.json file
+- in our example, we will use the cisco.json file
 
 ![snippets menu](/resources/figure0-2.png)
 Figure (2-2)
 
 - We will only go over how to change the snippet code and not talk about what the JSON is doing.
 
-- The `    "prefix": "cInitial",    ` field below sets our abbreviation name. We can change this to any name we would rather use to have this snippet paste its self into our configurations (program).
+- The `    "prefix": "cInitial",    ` field below sets our abbreviation name. We can change this to any name we would rather use to have this snippet paste itself into our configurations (program).
 
 ```
     "Cisco Initial Configuration": {
@@ -161,7 +161,7 @@ Figure (2-2)
     },
 ```
 
--  As it stands currently we will need to start typing `cInitial` to allow the  us to select this snippet. example in figure 
+-  As it stands currently we will need to start typing `cInitial` to allow us to select this snippet. example in figure 
 
 ![snippet use](/resources/figure2-3.png)
 Figure (2-3)
@@ -195,7 +195,7 @@ Figure (2-3)
 Figure (2-4)
 
 ### Changing the configs in the body of the snippet
-- Very simple we just change, add, or delete the code inside the quotes found inside the ***body*** section of the json configuration
+- Very simple we just change, add, or delete the code inside the quotes found inside the ***body*** section of the JSON configuration
 
 ```
     "Cisco Initial Configuration": {
@@ -218,22 +218,22 @@ Figure (2-4)
     },
 ```
 
-- Just be sure to verify your code prints correct afterward
+- Just be sure to verify your code prints correctly afterward
 
 ## How to use the snippets
 
-###### The file extension must be the correct language for the snippets you wish to use unless you created a ***Global User Snippet File***.  In the Figure (3-1) the name of the File is R1.ios the ***.ios*** has to be set to use the ***cisco.json*** snippets from the repo.
+###### The file extension must be the correct language for the snippets you wish to use unless you created a ***Global User Snippet File***.  In Figure (3-1) the name of the File is R1.ios the ***.ios*** has to be set to use the ***cisco.json*** snippets from the repo.
 
 
 ##### Cisco.json prefix Structure 
 - Here we are using the ***cisco.ios*** snippets. 
 	- Every snippet ***prefix*** was prefixed with the character  "c" to allow every snippet to populate inside the snippet menu box. 
-		- After the character "c" the snippets will be under the category for which the snippets purpose falls under. So far there are 3 main categories
+		- After the character "c" the snippets will be under the category for which the snippet's purpose falls under. So far there are 3 main categories
 			- p == protocol (bgp, ospf, eigrp, ipsec, acl, rpvst+)
 			- l2 == Layer 2 snippets (switchport, Access/trunk)
-			- l3 == Layer 3 snippets (Layer 3 port-channels, layer 3 SVIs)
+			- l3 == Layer 3 snippets (Layer 3 port-channel, layer 3 SVIs)
 	
-- If you do not know the snippets prefix simply type "c" then use ***DOWN ARROW*** to search for the snippet. 
+- If you do not know the snippet prefix simply type "c" and then use ***DOWN ARROW*** to search for the snippet. 
 
 ![Look up example](/resources/figure3-1.png)
 Figure (3-1)
