@@ -299,6 +299,10 @@
         "body": [
             "router ospf <PROCESS ID>",
             "   router-id <IP>",
+            "   redistribute connected subnets",
+            "   redistribute static subnets",
+            "   redistribute <PROTOCOL> metric <METRIC>",
+            "   !default-information originate",
             "   log-adjacency-changes",
             "   network <IP> <WILD CARD MASK> area 0",
             "   network <IP> <WILD CARD MASK> area 1",
@@ -335,7 +339,8 @@
             "   ip ospf dead-interval <DEAD_INTERVAL>",
             "   ip ospf retransmit-interval <RETRANSMIT_INTERVAL>",
             "   ip ospf network <NETWORK_TYPE>",
-            "   ip ospf authentication null"
+            "   ip ospf authentication null",
+            "exit",
         ],
         "description": "OSPF Interface Configuration, showing what can be done at the interface"
     },
@@ -361,7 +366,8 @@
             "   ip summary-address eigrp <AS_NUMBER> <SUMMARY_ADDRESS> <SUBNET_MASK>",
             "   ip bandwidth-percent eigrp <AS_NUMBER> <PERCENTAGE>",
             "   ip hello-interval eigrp <AS_NUMBER> <SECONDS>",
-            "   ip hold-time eigrp <AS_NUMBER> <SECONDS>"
+            "   ip hold-time eigrp <AS_NUMBER> <SECONDS>",
+            "exit",
         ],
         "description": "EIGRP Configuration"
     },
@@ -369,6 +375,7 @@
         "prefix": "cpBgp",
         "scope": "cisco",
         "body": [
+            "! Type command \"cpPrefixRouteMap\"",
             "router bgp <LOCAL_ASN>",
             "   bgp log-neighbor-changes",
             "   bgp router-id <ROUTER_ID>",
@@ -381,7 +388,8 @@
             "   neighbor <NEIGHBOR_IP> timers <KEEPALIVE> <HOLDTIME>",
             "   neighbor <NEIGHBOR_IP> route-map <ROUTE_MAP_NAME> in",
             "   neighbor <NEIGHBOR_IP> route-map <ROUTE_MAP_NAME> out",
-            "   maximum-paths <NUMBER_OF_PATHS>"
+            "   maximum-paths <NUMBER_OF_PATHS>",
+            "exit",
         ],
         "description": "BGP Configuration"
     },
