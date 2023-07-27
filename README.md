@@ -67,19 +67,19 @@ git clone https://github.com/twoThreeFiveEight/vsCodeSnippets.git
 - When the ***Snippets File*** search bar opens click on cisco.json file
 - If cisco.json is not an option go to 
 
-![[Pasted image 20230726214230.png]]
+![Snippet Config drop down menu](/resources/figure0-2.png)
 Figure (0-2)
 
 - When the file opens find the file path at the top of the editor.  Figure 0-3 and figure 0-4 shows the where you can find the path.
 
-![[Pasted image 20230726214636.png]]
+![path image](/resources/figure0-3.png)
 figure (0-3)
-![[Pasted image 20230726214652.png]]
+![closer look at path image](/resources/figure0-4.png)
 figure (0-4)
 
 - Open CLI and Navigate to the file path you found in the previous steps. 
 	- If you are using WSL like me you the file path will look like this
-![[Pasted image 20230726215735.png]]
+![look at wsl path](/resources/WSLpathlook.png)
 
 - Inside `/your/path/to/Code/User/snippets` run the following command to add the vsCodeSnippets repo files to this directory. 
 	- NOTE: If you already have configurations inside this directory you may want to run the following command inside another directory and  `mv` or `cp`  only the files you wish to add to your existing configuration. 
@@ -94,13 +94,13 @@ git clone https://github.com/twoThreeFiveEight/vsCodeSnippets.git
 ##### Cplusplus Snippets
 - You will need to have some LSP like clangd to create a cpp.json file. 
 - I am using C/C++ by Microsoft
-![[Pasted image 20230726223313.png]]
+![c/c++ dependency](/resources/figure1-1.png)
 Figure (1-1)
 
 ##### Cisco Snippets
 - You will need the Cisco IOS Syntax extension in vsCode to be able to add a json file containing the cisco configurations found inside this repo.
 - I am using the Cisco IOS Syntax extension by jamiewoodio
-![[Pasted image 20230726222944.png]]
+![cisco IOS dependency](/resources/figure1-2.png)
 Figure (1-2)
 
 
@@ -118,13 +118,13 @@ Figure (1-2)
 - Navigate to ***File*** then ***Preferences***
 - Click on ***Configure User Snippets***
 
-![[figure0-1.png]]
+![Figure0-1](/resources/figure0-1.png)
 Figure (2-1)
 
 - When the ***Snippets File*** search bar opens click on the language you wish to add the configurations to.
 - in our example we will use the cisco.json file
 
-![[Pasted image 20230726214230.png]]
+![snippets menu](/resources/figure0-2.png)
 Figure (2-2)
 
 - We will only go over how to change the snippet code and not talk about what the JSON is doing.
@@ -154,7 +154,7 @@ Figure (2-2)
 
 -  As it stands currently we will need to start typing `cInitial` to allow the  us to select this snippet. example in figure 
 
-![[Pasted image 20230726230701.png]]
+![snippet use](/resources/figure2-3.png)
 Figure (2-3)
 
 - We will change this to `cMyCustomPreFix` to make this the new snippet command
@@ -182,7 +182,7 @@ Figure (2-3)
 
 - Here is an example of what changes.
 
-![[Pasted image 20230726231157.png]]
+![customPrefixExample](/resources/figure2-4.png)
 Figure (2-4)
 
 ### Changing the configs in the body of the snippet
@@ -226,7 +226,7 @@ Figure (2-4)
 	
 - If you do not know the snippets prefix simply type "c" then use ***DOWN ARROW*** to search for the snippet. 
 
-![[Pasted image 20230726230330.png]]
+![Look up example](/resources/figure3-1.png)
 Figure (3-1)
 
 | First Character | Second Character | following       |
