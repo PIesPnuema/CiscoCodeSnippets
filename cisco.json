@@ -49,9 +49,11 @@
         "prefix": "cInitial",
         "scope": "cisco",
         "body": [
-            "hostname <name you want>",
-            "enable secret <PASSWORD>",
-            "username <USERNAME> secret <PASSWORD>",
+            "enable",
+            "configure terminal",
+            "hostname <DEVICE NAME>",
+            "enable secret <DEVICE PASSWORD>",
+            "username <DEVICE USERNAME> secret <DEVICE PASSWORD>",
             "line con 0",
             "logging synchronous",
             "login local",
@@ -70,9 +72,33 @@
         ],
         "description": "Cisco vlan creation"
     },
+    "Host names": {
+        "prefix": "cHost",
+        "scope": "cisco",
+        "body": [
+            "  ip host <NAME FOR HOST, EX: rtrCA01> <HOST_IP_ADDRESS>",
+            " "
+        ],
+        "description": "local machine DNS adds host name to IP address"
+    },
 
-        // you can add more Intial configurtions above here
+    // you can add more Intial configurtions above here
 
+    // This is a template for the PROTOCOL, L3, L2, and INITIAL sections. Do not remove. Copy and paste if you wish to use.
+    " ": {
+        "prefix": "c",
+        "scope": "cisco",
+        "body": [
+            " ",
+            " ",  
+            " ",
+            " ",
+            " ",
+            " "
+        ],
+        "description": "  "
+    },
+    
 
     // Layer 2 configurations
     // -----------------------
@@ -83,9 +109,9 @@
         "prefix": "cL2Svi",
         "scope": "cisco",
         "body": [
-            "interface vlan <number of vlan>",
-            "   description <Remote Management>",
-            "   ip address <IP> <SUBNET MASK>",
+            "interface vlan <VLAN_ID>",
+            "   description rmtMgmt VLAN <VLAN_ID>",
+            "   ip address <L2 SVI MGMT IP> <L2 SVI MGMT SUBNET MASK>",
             "   shutdown",
             "   no shutdown",
             "exit"
@@ -96,11 +122,11 @@
         "prefix": "cL2TrunkSwitchport",
         "scope": "cisco",
         "body": [
-            "interface <port 0/2>",
+            "interface <portX/X/X>",
             "   description <toSomeLocation>",
-            "   switchport trunk encapsulation dot1q <IP> <SUBNET MASK>",
+            "   switchport trunk encapsulation dot1q <INTERFACE IP> <INTERFACE SUBNET MASK>",
             "   switchport mode trunk",
-            "   switchport trunk allowed vlan <10,20,30,40>",
+            "   switchport trunk allowed vlan <XX,YY,ZZ>",
             "   shutdown",
             "   no shutdown",
             "exit"
@@ -111,7 +137,7 @@
         "prefix": "cL2AccessSwitchport",
         "scope": "cisco",
         "body": [
-            "interface <port 0/2>",
+            "interface <portX/X/X>",
             "   description <toSomeLocation>",
             "   switchport mode access",
             "   switchport access vlan <VLAN_ID>",
@@ -128,10 +154,10 @@
         "scope": "cisco",
         "body": [
             "interface port-channel<PORT CHANNEL NUMBER>",
-            "   description to<Some location>-PortChannel",
+            "   description <toSOME_LOCATION-PortChannel>",
             "   switchport trunk encapsulation dot1q",
             "   switchport mode trunk",
-            "   switchport trunk allowed vlan <20,30,60>",
+            "   switchport trunk allowed vlan <XX,YY,ZZ>",
             "   shutdown",
             "   no shutdown",
             "exit",
@@ -140,7 +166,7 @@
             "   description to<Some location>-PortChannel",
             "   switchport trunk encapsulation dot1q",
             "   switchport mode trunk",
-            "   switchport trunk allowed vlan <20,30,60>",
+            "   switchport trunk allowed vlan <XX,YY,ZZ>",
             "   channel-group <PORT CHANNEL NUMBER> mode active",
             "   shutdown",
             "   no shutdown",
@@ -149,7 +175,22 @@
         "description": "Layer 2 Port-Channel creation"
     },
 
-        // you can add more Layer 2 configurations above here
+    // you can add more Layer 2 configurations above here
+    
+    // This is a template for the PROTOCOL, L3, L2, and INITIAL sections. Do not remove. Copy and paste if you wish to use.
+    " ": {
+        "prefix": "c",
+        "scope": "cisco",
+        "body": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ],
+        "description": "  "
+    },
 
 
     // Layer 3 configurations
@@ -161,11 +202,24 @@
         "prefix": "cL3Svi",
         "scope": "cisco",
         "body": [
-            "! For HSRP type \"cpStandby\" where you wish to add code",
-            "interface vlan <number of vlan>",
-            "   description <NAME>",
-            "   ip address <IP> <SUBNET MASK>",
-            "   ip helper-address <IP TO DHCP POOL>",
+            
+            "!     FOR HSRP",
+            "!     -------------------------------------",
+            "!     SET: Preempt if ACTIVE switch only.",
+            "!     SET: priority, Higher == More prefered",
+            "!     DEFAULT GATEWAY VLAN_ID is a good convention for ID number. Highlight \"<DEFAULT GATEWAY VLAN_ID>\" press ctrl+F2 to change all instances",
+            "",
+            "vlan <DEFAULT GATEWAY VLAN_ID>",
+            "name <DEFAULT GATEWAY NAME>",
+            "",
+            "interface vlan <DEFAULT GATEWAY VLAN_ID>",
+            "   description <CAMPUS DATE | CAMPUSVOICE | NMS | FINANCE>",
+            "   ip address <DEFAULT GATEWAY IP> <DEFAULT GATEWAY SUBNET MASK>",
+            "   ip helper-address <DHCP POOL IP ADDRESS>",
+            "   standby <DEFAULT GATEWAY VLAN_ID> ip <STANDBY SWITCH IP>",
+            "   standby <DEFAULT GATEWAY VLAN_ID> priority <110>",
+            "   standby <DEFAULT GATEWAY VLAN_ID> timers <Seconds for next Hello> <Hold time before switching to backup>",
+            "   !standby <DEFAULT GATEWAY VLAN_ID> preempt",
             "   shutdown",
             "   no shutdown",
             "exit"
@@ -176,9 +230,9 @@
         "prefix": "cl3Interface",
         "scope": "cisco",
         "body": [
-            "interface <PORT 0/0>",
+            "interface <port X/X/X>",
             "   description <toSomeLocation>",
-            "   ip address <IP> <SUBNET MASK>",
+            "   ip address <L3 INTERFACE IP> <L3 INTERFACE SUBNET MASK>",
             "   shutdown",
             "   no shutdown",
             "exit"
@@ -189,9 +243,9 @@
         "prefix": "cl3GigaInterface",
         "scope": "cisco",
         "body": [
-            "interface GigabitEthernet<PORT NUMBER>",
+            "interface GigabitEthernet<X/X/X>",
             "   description <toSomeLocation>",
-            "   ip address <IP> <SUBNET MASK>",
+            "   ip address <L3 INTERFACE IP> <L3 INTERFACE SUBNET MASK>",
             "   shutdown",
             "   no shutdown",
             "exit"
@@ -202,9 +256,9 @@
         "prefix": "cl3FastInterface",
         "scope": "cisco",
         "body": [
-            "interface FastEthernet<PORT NUMBER>",
+            "interface FastEthernet<X/X/X>",
             "   description <toSomeLocation>",
-            "   ip address <IP> <SUBNET MASK>",
+            "   ip address <L3 INTERFACE IP> <L3 INTERFACE SUBNET MASK>",
             "   shutdown",
             "   no shutdown",
             "exit"
@@ -215,10 +269,12 @@
         "prefix": "cl3Portchannel",
         "scope": "cisco",
         "body": [
+            "! Highlight \"<PORT CHANNEL NUMBER>\" press ctrl+F2 to change all instances",
+            "",
             "interface port-channel<PORT CHANNEL NUMBER>",
             "   description to <Some location>-PortChannel",
             "   no switchport",
-            "   ip address <IP> <SUBNET>",
+            "   ip address <L3 INTERFACE IP> <L3 INTERFACE SUBNET>",
             "   shutdown",
             "   no shutdown",
             "exit",
@@ -237,6 +293,21 @@
 
 
         // you can add more Layer 3 configurations above here
+
+    // This is a template for the PROTOCOL, L3, L2, and INITIAL sections. Do not remove. Copy and paste if you wish to use.
+    " ": {
+        "prefix": "c",
+        "scope": "cisco",
+        "body": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ],
+        "description": "  "
+    },
 
     
     // Protocol configurations
@@ -284,8 +355,6 @@
         "prefix": "cpStandby",
         "scope": "cisco",
         "body": [
-            "!VLAN ID is a good convention for ID number",
-            "!preempt is commented out to warn you that it is only needed on the MASTER switch",
             "standby <ID> ip <IP>",
             "standby <ID> priority 110",
             "standby <ID> timers <Seconds for next Hello> <Hold time before switching to backup>",
@@ -481,17 +550,138 @@
     },
  
         // you can add more here
-        
+ 
+    // This is a template for the PROTOCOL, L3, L2, and INITIAL sections. Do not remove. Copy and paste if you wish to use.
     " ": {
-        "prefix": " ",
+        "prefix": "c",
         "scope": "cisco",
         "body": [
             " ",
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ],
+        "description": "  "
+    },
+
+    //
+    // HELP SECTION
+    // ------------
+    // all "prefix:" names must begin with the question mark character "?" inside this section.
+    // This ensures you can look up how to configure a specific element or what options that configuration offers.
+    
+    // Put all commands in here for examples and show all possible options 
+
+    "How to: IP SLA": {
+        "prefix": "?ipSla",
+        "scope": "cisco",
+        "body": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ],
+        "description": "  "
+    },
+    "How to: DHCP": {
+        "prefix": "?dhcp",
+        "scope": "cisco",
+        "body": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ],
+        "description": "  "
+    },
+
+    "How to: bgp": {
+        "prefix": "?bgp",
+        "scope": "cisco",
+        "body": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ],
+        "description": "  "
+    },
+
+    "How to: IP Security tunnel": {
+        "prefix": "?IpSecTunnel",
+        "scope": "cisco",
+        "body": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ],
+        "description": "  "
+    },
+
+    "How to: Port Address Translation": {
+        "prefix": "?pat",
+        "scope": "cisco",
+        "body": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ],
+        "description": "  "
+    },
+
+    "How to: Dynamic Nat": {
+        "prefix": "?dynNat",
+        "scope": "cisco",
+        "body": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ],
+        "description": "  "
+    },
+
+    "How to: ospf": {
+        "prefix": "?ospf",
+        "scope": "cisco",
+        "body": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ],
+        "description": "  "
+    },
+
+
+    // This is a template for the HELP section. Do not remove. Copy and paste if you wish to use.
+    "How to: ": {
+        "prefix": "?",
+        "scope": "cisco",
+        "body": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
             " "
         ],
         "description": "  "
