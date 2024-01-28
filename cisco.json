@@ -50,17 +50,35 @@
         "scope": "cisco",
         "body": [
             "! transport input ssh is to only allow SSH",
-            "! Older devices may only allow MD5 encryption",
+            "! Older devices may only allow MD5 encryption which would mean you can oly use the enable secret command",
+            "! Type \"?PasswordEncryption\" to learn more about different encryption levels"
+            "",
             "enable",
             "configure terminal",
+            "login block-for 20 attempts 3 within 30",
+            "ip name-server <DNS server IP address>",
+            "ntp server <hostname or IP address>",
+            "!Layer 2 switch gateway",
+            "ip default-gateway <Gateway of SVI>"
+            "!Layer 3 switch route (UN-COMMENT)",
+            "!ip routing"
+            "!ip route 0.0.0.0 0.0.0.0 <NEXT HOP IP>"
             "hostname <DEVICE NAME>",
-            "enable algorithm-type sha256 secret <DEVICE PASSWORD>",
+            "enable level <Priveledge level #. Remove level if for all> secret <ENABLE PASSWORD>",
             "username <DEVICE USERNAME> algorithm-type sha256 secret <USERNAME PASSWORD>",
+            "!",
             "line con 0",
             "logging synchronous",
             "login local",
-            "line vty 0 4",
+            "!",
+            "line vty 0 2",
             "transport input ssh",
+            "transport output ssh",
+            "login local",
+            "!",
+            "line vty 0 15",
+            "transport input ssh",
+            "transport output ssh",
             "logging synchronous",
             "login local"
         ],
@@ -177,9 +195,23 @@
         ],
         "description": "Layer 2 Port-Channel creation"
     },
+    "Initial lldp and example": {
+        "prefix": "cLLDP",
+        "scope": "cisco",
+        "body": [
+            "lldp run",
+            "",
+            "interface ethernet X/Y ",
+            "   lldp transmit",
+            "   lldp receive"
+        ],
+        "description": "Initial lldp and example"
+    },
 
     // you can add more Layer 2 configurations above here
-    
+   
+ 
+ 
     // This is a template for the PROTOCOL, L3, L2, and INITIAL sections. Do not remove. Copy and paste if you wish to use.
     " ": {
         "prefix": "c",
@@ -998,6 +1030,37 @@
             "snmp-server enable"
         ],
         "description": "How to configure SNMP (Simple Network Management Protocol) settings in Cisco devices"
+    },
+    
+    "How to: enable and user Encryption Levels": {
+        "prefix": "?Password_Encryption",
+        "scope": "cisco",
+        "body": [
+            "Encryption Levels/Syntax",
+            "-------------------------",  
+            "Type 0: Unencrypted (plaintext). You will not activate \"Service password-encyption\" but you will only use \"password\" command",
+            "Type 5: MD5 hashing. Provides better security and is commonly used for enable secrets. using the \"secret\" keyword enables MD5 encryption",
+            "Type 7: Vigenère cipher. Reversible and considered weak. Used by the service password-encryption command."
+            "Type 8 and Type 9: More secure password hashing algorithms introduced in newer IOS versions. Type 9, for example, uses the scrypt algorithm.",
+            "",
+            "!Type 0:",
+            "enable password <PASSWORD>"
+            "username <USERNAME> password <PASSWORD>"
+            "",
+            "!Type 5:",
+            "Setting Enable \"Secret\" by default uses a form of MD5 hash (Type 5):",
+            "enable secret [password]",
+            "username <USERNAME> secret <PASSWORD>",
+            "",
+            "!type 7 (not recommended, easily reversible)",
+            "service password-encyption",
+            "enable password <PASSWORD>",
+            "username <USERNAME> password <PASSWORD>",
+            "",
+            "!Type 8-9 (enable does not support these levels. Only for encypting a specific username password)",
+            "username <USERNAME> algorithm-type <scrypt | sha256> secret <PASSWORD>"
+        ],
+        "description": "  "
     },
 
     // This is a template for the HELP section. Do not remove. Copy and paste if you wish to use.
