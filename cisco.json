@@ -56,8 +56,9 @@
             "ip name-server <DNS server IP address>",
             "no ip domain-lookup",
             "ntp server <hostname or IP address>",
-            "!Layer 2 switch gateway",
-            "ip default-gateway <Gateway of SVI>""!Layer 3 switch route (UN-COMMENT)",
+            "!Layer 2 switch gateway (UN-COMMENT BELOW)",
+            "ip default-gateway <Gateway of SVI>"
+            "!Layer 3 switch route (UN-COMMENT BELOW)",
             "!ip routing""!ip route 0.0.0.0 0.0.0.0 <NEXT HOP IP>""hostname <DEVICE NAME>",
             "enable secret level <Add privledge level> <ENABLE PASSWORD>",
             "username <DEVICE USERNAME> algorithm-type sha256 secret <USERNAME PASSWORD>",
@@ -151,7 +152,7 @@
         "scope": "cisco",
         "body": [
             "interface vlan <VLAN_ID>",
-            "   description rmtMgmt VLAN <VLAN_ID>",
+            "   description MGMT",
             "   ip address <L2 SVI MGMT IP> <SUBNET MASK>",
             "   shutdown",
             "   no shutdown",
@@ -198,6 +199,7 @@
             "   switchport trunk encapsulation dot1q",
             "   switchport mode trunk",
             "   switchport trunk allowed vlan <XX,YY,ZZ>",
+            "   vpc <XX> (DELETE IF NOT USED",
             "   shutdown",
             "   no shutdown",
             "exit",
@@ -262,7 +264,7 @@
             "   description <CAMPUS DATE | CAMPUSVOICE | NMS | FINANCE>",
             "   ip address <DEFAULT GATEWAY IP> <DEFAULT GATEWAY SUBNET MASK>",
             "   ip helper-address <DHCP POOL IP ADDRESS>",
-            "   standby <DEFAULT GATEWAY VLAN_ID> ip <STANDBY SWITCH IP>",
+            "   standby <DEFAULT GATEWAY VLAN_ID> ip <VIP>",
             "   standby <DEFAULT GATEWAY VLAN_ID> priority <110>",
             "   standby <DEFAULT GATEWAY VLAN_ID> timers <Seconds for next Hello> <Hold time before switching to backup>",
             "   !standby <DEFAULT GATEWAY VLAN_ID> preempt",
@@ -272,6 +274,33 @@
         ],
         "description": "Cisco SVI syntax for Layer 3"
     },
+    "Layer 3 SVI creation": {
+        "prefix": "cL3SviVRRP",
+        "scope": "cisco",
+        "body": [
+            "!     FOR VRRP",
+            "!     -------------------------------------",
+            "!     SET: priority, Higher == More preferred",
+            "!     DEFAULT GATEWAY VLAN_ID is a good convention for ID number. Highlight \"<DEFAULT GATEWAY VLAN_ID>\" press ctrl+F2 to change all instances",
+            "",
+            "vlan <DEFAULT GATEWAY VLAN_ID>",
+            "name <DEFAULT GATEWAY NAME>",
+            "",
+            "interface Vlan<DEFAULT GATEWAY VLAN_ID>",
+            "   description <CAMPUS DATA | CAMPUS VOICE | NMS | FINANCE>",
+            "   ip address <DEFAULT GATEWAY IP> <DEFAULT GATEWAY SUBNET MASK>",
+            "   ip helper-address <DHCP POOL IP ADDRESS>",
+            "   vrrp <VRRP_GROUP_NUMBER> ip <VIP>",
+            "   vrrp <VRRP_GROUP_NUMBER> priority 110",
+            "   vrrp <VRRP_GROUP_NUMBER> timers advertise <ADVERTISE_INTERVAL>",
+            "   vrrp <VRRP_GROUP_NUMBER> preempt",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Cisco SVI syntax for Layer 3"
+    },
+
     "Layer 3 interface creation": {
         "prefix": "cl3Interface",
         "scope": "cisco",
@@ -285,6 +314,21 @@
         ],
         "description": "Layer 3 interface creation"
     },
+    "Layer 3 Serial Interface creation": {
+        "prefix": "cl3SerialInterface",
+        "scope": "cisco",
+        "body": [
+            "interface serial<SERIAL_PORT>",
+            "   description <toSomeLocation>",
+            "   ip address <L3_INTERFACE_IP> <L3_INTERFACE_SUBNET_MASK>",
+            "   clock rate <CLOCK_RATE>",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Layer 3 serial interface creation"
+    },
+
     "Layer 3 GigabitEthernet interface creation": {
         "prefix": "cl3GigaInterface",
         "scope": "cisco",
@@ -477,9 +521,10 @@
             " ",
             "! vlan syntax: Lower Priority number is the prefered route.",
             "! Default to Lowest MAC address for Root Bridge",
+            "! Good convention = Lower priority for all odds on CORE 1 and all evens on CORE 2",
             "vlan <VLAN ID>",
             "name <CampusData>",
-            "spanning-tree vlan <VLAN ID> priority 0",
+            "spanning-tree vlan <VLAN ID, VLAN ID2, VLAN ID3, ETC> priority 0",
         ],
         "description": "Rapid Per VLAN Spanning Tree + creation"
     },
@@ -494,6 +539,17 @@
         ],
         "description": "HSRP standby commands"
     },
+    "VRRP commands": {
+        "prefix": "cpVrrp",
+        "scope": "cisco",
+        "body": [
+            "vrrp <GROUP_NUMBER> ip <VIP>",
+            "vrrp <GROUP_NUMBER> priority 110",
+            "vrrp <GROUP_NUMBER> timers advertise <ADVERTISE_INTERVAL>",
+            "vrrp <GROUP_NUMBER> preempt"
+        ],
+        "description": "VRRP commands"
+    },
     "OSPF Area Configuration": {
         "prefix": "cpOspf",
         "scope": "cisco",
@@ -501,6 +557,7 @@
             "router ospf <PROCESS ID>",
             "   router-id <IP>",
             "   redistribute connected subnets",
+            "   redistribute static subnets route-map STATIC-ROUTES",
             "   redistribute static subnets",
             "   redistribute <PROTOCOL> metric <METRIC>",
             "   !default-information originate",
@@ -674,7 +731,12 @@
         "scope": "cisco",
         "body": [
             "! ?ACL command shows examples on writing ACLs ",
+            "!Extended ACL command",
             "access-list <acl-number> {permit|deny} <protocol> <source> <source-wildcard> <destination> <destination-wildcard> [eq <port>]",
+            "! Standard ACL Grouping",
+            "ip access-list standard STATIC_ROUTES",
+            "   permit <ADDRESS> <WILDCARD MASK>",
+            "   permit <ADDRESS> <WILDCARD MASK",
         ],
         "description": "Access list syntax"
     },
