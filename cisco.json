@@ -1,5 +1,5 @@
 {
-	// Publisher:       Aaron Carroll 
+    // Publisher:       Aaron Carroll 
     // File:            cisco.json
     // Description:     vsCode user snippets configurations for cisco 
     //
@@ -25,46 +25,41 @@
     // 
     //
     // Place your snippets for cisco here. Each snippet is defined under a snippet name and has a prefix, body and 
-	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-	// same ids are connected.
-	// Example:
-	// "Print to console": {
-	// 	"prefix": "log",
+    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+    // same ids are connected.
+    // Example:
+    // "Print to console": {
+    // 	"prefix": "log",
     //  "scope": "cisco",
-	// 	"body": [
-	// 		"console.log('$1');",
-	// 		"$2"
-	// 	],
-	// 	"description": "Log output to console"
-	// }
+    // 	"body": [
+    // 		"console.log('$1');",
+    // 		"$2"
+    // 	],
+    // 	"description": "Log output to console"
+    // }
     //
-
     // Initial Configurations
     // -----------------------
     // This section is for cisco Initial Configurations. Feel free to add notes that are helpful to know when adding configurations
     //
-
     "Cisco Initial Configuration": {
         "prefix": "cInitial",
         "scope": "cisco",
         "body": [
             "! transport input ssh is to only allow SSH",
             "! Older devices may only allow MD5 encryption which would mean you can oly use the enable secret command",
-            "! Type \"?PasswordEncryption\" to learn more about different encryption levels"
-            "",
+            "! Type \"?PasswordEncryption\" to learn more about different encryption levels""",
             "enable",
             "configure terminal",
             "login block-for 20 attempts 3 within 30",
             "ip name-server <DNS server IP address>",
+            "no ip domain-lookup",
             "ntp server <hostname or IP address>",
             "!Layer 2 switch gateway",
-            "ip default-gateway <Gateway of SVI>"
-            "!Layer 3 switch route (UN-COMMENT)",
-            "!ip routing"
-            "!ip route 0.0.0.0 0.0.0.0 <NEXT HOP IP>"
-            "hostname <DEVICE NAME>",
-            "enable level <Priveledge level #. Remove level if for all> secret <ENABLE PASSWORD>",
+            "ip default-gateway <Gateway of SVI>""!Layer 3 switch route (UN-COMMENT)",
+            "!ip routing""!ip route 0.0.0.0 0.0.0.0 <NEXT HOP IP>""hostname <DEVICE NAME>",
+            "enable secret level <Add privledge level> <ENABLE PASSWORD>",
             "username <DEVICE USERNAME> algorithm-type sha256 secret <USERNAME PASSWORD>",
             "!",
             "line con 0",
@@ -84,12 +79,42 @@
         ],
         "description": "Cisco Initial Configuration"
     },
+    "Banner motd": {
+        "prefix": "cbannerMotd",
+        "scope": "cisco",
+        "body": [
+            "banner motd #WARNING: AUTHORIZED ACCESS ONLY",
+            "You are accessing a private computer system. This system, including all related equipment, networks, and",
+            "network devices (specifically including Internet access), is provided only for authorized use.",
+            "Unauthorized use may subject you to criminal prosecution. Evidence of unauthorized use collected during",
+            "monitoring may be used for administrative, criminal, or other adverse action. Use of this system constitutes",
+            "consent to monitoring for these purposes.",
+            "",
+            "By continuing to use this system, you acknowledge that you understand and agree to these terms.#"
+        ],
+        "description": "Used to add a warning to users accessing machine"
+    },
+    "Banner Login": {
+        "prefix": "cbannerLogin",
+        "scope": "cisco",
+        "body": [
+            "banner Login #",
+            "",
+            "<--Write Descriptive information between the hashes EX:",
+            "Building: 02",
+            "Closet: MDF01",
+            "Rack: 05",
+            "Unit: 30",
+            "--> #"
+        ],
+        "description": "Adds information regarding device"
+    },
     "VLAN Creation": {
         "prefix": "vlan",
         "scope": "cisco",
         "body": [
             "vlan ",
-            "name ",
+            "name <NAME>",
         ],
         "description": "Cisco vlan creation"
     },
@@ -97,21 +122,19 @@
         "prefix": "cHost",
         "scope": "cisco",
         "body": [
-            "  ip host <NAME FOR HOST, EX: rtrCA01> <HOST_IP_ADDRESS>",
+            "ip host <NAME FOR HOST, EX: rtrCA01> <HOST_IP_ADDRESS>",
             " "
         ],
         "description": "local machine DNS adds host name to IP address"
     },
-
     // you can add more Intial configurtions above here
-
     // This is a template for the PROTOCOL, L3, L2, and INITIAL sections. Do not remove. Copy and paste if you wish to use.
     " ": {
         "prefix": "c",
         "scope": "cisco",
         "body": [
             " ",
-            " ",  
+            " ",
             " ",
             " ",
             " ",
@@ -119,20 +142,17 @@
         ],
         "description": "  "
     },
-    
-
     // Layer 2 configurations
     // -----------------------
     // This section is for cisco Layer 2 configurations. Feel free to add notes that are helpful to know when adding configurations
     //
-
     "Layer 2 SVI creation": {
         "prefix": "cL2Svi",
         "scope": "cisco",
         "body": [
             "interface vlan <VLAN_ID>",
             "   description rmtMgmt VLAN <VLAN_ID>",
-            "   ip address <L2 SVI MGMT IP> <L2 SVI MGMT SUBNET MASK>",
+            "   ip address <L2 SVI MGMT IP> <SUBNET MASK>",
             "   shutdown",
             "   no shutdown",
             "exit"
@@ -147,7 +167,7 @@
             "   description <toSomeLocation>",
             "   switchport trunk encapsulation dot1q <INTERFACE IP> <INTERFACE SUBNET MASK>",
             "   switchport mode trunk",
-            "   switchport trunk allowed vlan <XX,YY,ZZ>",
+            "   switchport trunk allowed vlan <PRUNED VLAN IDs>",
             "   shutdown",
             "   no shutdown",
             "exit"
@@ -160,9 +180,8 @@
         "body": [
             "interface <portX/X/X>",
             "   description <toSomeLocation>",
-            "   switchport mode access",
+            "   switchport host",
             "   switchport access vlan <VLAN_ID>",
-            "   spanning-tree portfast",
             "   spanning-tree bpduguard enable",
             "   shutdown",
             "   no shutdown",
@@ -207,11 +226,7 @@
         ],
         "description": "Initial lldp and example"
     },
-
     // you can add more Layer 2 configurations above here
-   
- 
- 
     // This is a template for the PROTOCOL, L3, L2, and INITIAL sections. Do not remove. Copy and paste if you wish to use.
     " ": {
         "prefix": "c",
@@ -226,18 +241,14 @@
         ],
         "description": "  "
     },
-
-
     // Layer 3 configurations
     // ----------------------
     // This section is for cisco Layer 3 configurations. Feel free to add notes that are helpful to know when adding configurations
     //
-
     "Layer 3 SVI creation": {
         "prefix": "cL3Svi",
         "scope": "cisco",
         "body": [
-            
             "!     FOR HSRP",
             "!     -------------------------------------",
             "!     SET: Preempt if ACTIVE switch only.",
@@ -317,7 +328,7 @@
             "interface range <portX/X-X>",
             "   description toPaNGFWSeaIceHQ01-PortChannel",
             "   no switchport",
-            "   no ip address", 
+            "   no ip address",
             "   channel-group <PORT CHANNEL NUMBER> mode active",
             "   shutdown",
             "   no shutdown",
@@ -325,10 +336,7 @@
         ],
         "description": "Layer 3 Port-Channel creation"
     },
-
-
-        // you can add more Layer 3 configurations above here
-
+    // you can add more Layer 3 configurations above here
     // This is a template for the PROTOCOL, L3, L2, and INITIAL sections. Do not remove. Copy and paste if you wish to use.
     " ": {
         "prefix": "c",
@@ -343,13 +351,10 @@
         ],
         "description": "  "
     },
-
-    
     // Protocol configurations
     // -----------------------
     // This section is for cisco protocols. Feel free to add notes that are helpful to know when adding configurations
     //
-
     "AAA Configuration": {
         "prefix": "cpAAA",
         "scope": "cisco",
@@ -442,7 +447,6 @@
         ],
         "description": "Configure enhanced attributes for RADIUS server"
     },
-
     "IP SLA icmp-echo configurations": {
         "prefix": "cpIpSlaIcmpEcho",
         "scope": "cisco",
@@ -471,7 +475,7 @@
         "body": [
             "spanning-tree mode rapid-pvst",
             " ",
-            "! vlan syntax: Lower Priority number is the prefered route.", 
+            "! vlan syntax: Lower Priority number is the prefered route.",
             "! Default to Lowest MAC address for Root Bridge",
             "vlan <VLAN ID>",
             "name <CampusData>",
@@ -489,7 +493,7 @@
             "!standby <ID> preempt"
         ],
         "description": "HSRP standby commands"
-    },     
+    },
     "OSPF Area Configuration": {
         "prefix": "cpOspf",
         "scope": "cisco",
@@ -596,11 +600,9 @@
         "body": [
             "ip prefix-list <PREFIX_LIST_IN_NAME> seq 10 permit <NETWORK>",
             "ip prefix-list <PREFIX_LIST_OUT_NAME> seq 20 deny <NETWORK>",
-
             "route-map <ROUTE_MAP_IN_NAME> permit 10",
             "   match ip address prefix-list <PREFIX_LIST_IN_NAME>",
             "!route-map <ROUTE_MAP_IN_NAME> deny 20",
-            
             "route-map <ROUTE_MAP_OUT_NAME> permit 10",
             "   match ip address prefix-list <PREFIX_LIST_OUT_NAME>",
             "!route-map <ROUTE_MAP_OUT_NAME> deny 20"
@@ -676,9 +678,7 @@
         ],
         "description": "Access list syntax"
     },
- 
-        // you can add more here
- 
+    // you can add more here
     // This is a template for the PROTOCOL, L3, L2, and INITIAL sections. Do not remove. Copy and paste if you wish to use.
     " ": {
         "prefix": "c",
@@ -693,15 +693,12 @@
         ],
         "description": "  "
     },
-
     //
     // HELP SECTION
     // ------------
     // all "prefix:" names must begin with the question mark character "?" inside this section.
     // This ensures you can look up how to configure a specific element or what options that configuration offers.
-    
     // Put all commands in here for examples and show all possible options 
-
     "How to: IP SLA": {
         "prefix": "?ipSla",
         "scope": "cisco",
@@ -850,7 +847,7 @@
             "   neighbor <RR-IP> route-reflector-client",
         ],
         "description": "How to configure BGP (Border Gateway Protocol) with prefix lists and route maps in Cisco devices"
-    },  
+    },
     "How to: IP Security tunnel": {
         "prefix": "?IpSecTunnel",
         "scope": "cisco",
@@ -863,7 +860,7 @@
             "  encr aes",
             "  authentication pre-share",
             "  group 2",
-            "  lifetime 86400                                    // Set the SA lifetime in seconds",                 
+            "  lifetime 86400                                    // Set the SA lifetime in seconds",
             "!",
             "! Configure the ISAKMP key (pre-shared key)",
             "crypto isakmp key <pre-shared-key> address <peer-ip>",
@@ -885,7 +882,7 @@
             "access-list <ACL-number> permit ip <local-network> <remote-network>",
             "",
             "! Ensure the ACL is properly applied to the interface",
-            "interface GigabitEthernet0/0                        // Replace with the appropriate interface", 
+            "interface GigabitEthernet0/0                        // Replace with the appropriate interface",
             "  ip access-group <ACL-number> in",
         ],
         "description": "How to configure an IPsec tunnel in Cisco devices"
@@ -951,7 +948,7 @@
             "!",
             "! Optionally, configure authentication for OSPF",
             "interface GigabitEthernet0/1",
-            "  ip ospf authentication message-digest     // Enable MD5 authentication",   
+            "  ip ospf authentication message-digest     // Enable MD5 authentication",
             "  ip ospf message-digest-key 1 md5 <key>    // Configure the MD5 key",
             "",
             "! Advertise networks to OSPF",
@@ -1031,22 +1028,18 @@
         ],
         "description": "How to configure SNMP (Simple Network Management Protocol) settings in Cisco devices"
     },
-    
     "How to: enable and user Encryption Levels": {
         "prefix": "?Password_Encryption",
         "scope": "cisco",
         "body": [
             "Encryption Levels/Syntax",
-            "-------------------------",  
+            "-------------------------",
             "Type 0: Unencrypted (plaintext). You will not activate \"Service password-encyption\" but you will only use \"password\" command",
             "Type 5: MD5 hashing. Provides better security and is commonly used for enable secrets. using the \"secret\" keyword enables MD5 encryption",
-            "Type 7: Vigenère cipher. Reversible and considered weak. Used by the service password-encryption command."
-            "Type 8 and Type 9: More secure password hashing algorithms introduced in newer IOS versions. Type 9, for example, uses the scrypt algorithm.",
+            "Type 7: Vigenère cipher. Reversible and considered weak. Used by the service password-encryption command.""Type 8 and Type 9: More secure password hashing algorithms introduced in newer IOS versions. Type 9, for example, uses the scrypt algorithm.",
             "",
             "!Type 0:",
-            "enable password <PASSWORD>"
-            "username <USERNAME> password <PASSWORD>"
-            "",
+            "enable password <PASSWORD>""username <USERNAME> password <PASSWORD>""",
             "!Type 5:",
             "Setting Enable \"Secret\" by default uses a form of MD5 hash (Type 5):",
             "enable secret [password]",
@@ -1062,7 +1055,6 @@
         ],
         "description": "  "
     },
-
     // This is a template for the HELP section. Do not remove. Copy and paste if you wish to use.
     "How to: ": {
         "prefix": "?",
