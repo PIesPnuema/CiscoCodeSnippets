@@ -190,6 +190,59 @@
         ],
         "description": "Layer 2 Access Switchport creation"
     },
+    "Layer 2 Access Switchport creation with Port Security": {
+        "prefix": "cL2AccessSwitchportPortSecurity",
+        "scope": "cisco",
+        "body": [
+            "interface <portX/X/X>",
+            "   description <toSomeLocation>",
+            "   switchport host",
+            "   switchport access vlan <VLAN_ID>",
+            "   switchport port-security",
+            "   switchport port-security maximum 2",
+            "   switchport port-security violation restrict",
+            "   spanning-tree bpduguard enable",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Layer 2 Access Switchport creation with Port Security"
+    },
+    "Layer 2 Access Switchport with Voice VLAN and security": {
+        "prefix": "cL2AccessSwitchportSecurityVoiceVLAN",
+        "scope": "cisco",
+        "body": [
+            "interface <portX/X/X>",
+            "   description <toSomeLocation>",
+            "   switchport host",
+            "   switchport access vlan <Data_VLAN_ID>",
+            "   switchport voice vlan <Voice_VLAN_ID>",
+            "   switchport port-security",
+            "   switchport port-security maximum 2",
+            "   switchport port-security violation restrict",
+            "   spanning-tree bpduguard enable",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Layer 2 Access Switchport creation with Voice VLAN and security"
+    },
+    "Layer 2 Access Switchport with Voice VLAN": {
+        "prefix": "cL2AccessSwitchportVoiceVLAN",
+        "scope": "cisco",
+        "body": [
+            "interface <portX/X/X>",
+            "   description <toSomeLocation>",
+            "   switchport host",
+            "   switchport access vlan <Data_VLAN_ID>",
+            "   switchport voice vlan <Voice_VLAN_ID>",
+            "   spanning-tree bpduguard enable",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Layer 2 Access Switchport creation with Voice VLAN"
+    },
     "Layer 2 Port-Channel creation": {
         "prefix": "cl2Portchannel",
         "scope": "cisco",
