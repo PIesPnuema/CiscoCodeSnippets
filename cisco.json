@@ -1,50 +1,197 @@
 {
-    // Publisher:       Aaron Carroll 
-    // File:            cisco.json
-    // Description:     vsCode user snippets configurations for cisco 
-    //
-    // NOTE ABOUT FILE:
-    // -----------------------------------------------------------------------------------------------------------------------------------
-    // - Start all "prefix" varibles with the character "c" to allow all options snippet options to appear when you are to find a specific snippet.
-    //   Prefix is the name you will use to add snippet to your configurations. In the example below we prefix the "prefix variable" with "c".
-    //  EX: 
-    //       "Cisco Initial Configuration": {
-    //          "prefix": "cInitial",                // HERE 
-    //          "scope": "cisco",
-    //          "body": [
-    //              "hostname"
-    //              "... 
-    //          ]
-    //
-    //
-    // - Please keep place all snippets into appropriate groups. The file stucture is below.
-    //      - Initial configurations
-    //      - Layer 2 configurations
-    //      - Layer 2 configurations
-    //      - Protocol configurations
-    // 
-    //
-    // Place your snippets for cisco here. Each snippet is defined under a snippet name and has a prefix, body and 
-    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-    // same ids are connected.
-    // Example:
-    // "Print to console": {
-    // 	"prefix": "log",
-    //  "scope": "cisco",
-    // 	"body": [
-    // 		"console.log('$1');",
-    // 		"$2"
-    // 	],
-    // 	"description": "Log output to console"
-    // }
-    //
-    // Initial Configurations
-    // -----------------------
-    // This section is for cisco Initial Configurations. Feel free to add notes that are helpful to know when adding configurations
-    //
+// Publisher:       Aaron Carroll 
+// File:            cisco.json
+// Description:     Cisco configuration snippets. A suggestive tool to aid in rapid configuration.  
+//
+// NOTE ABOUT FILE:
+// -----------------------------------------------------------------------------------------------------------------------------------
+// - Begin all "prefix" variables with the character "c" to ensure all snippet options appear when searching. 
+//   The prefix is utilized to add snippets to your configurations. 
+//   Example:
+//       "Cisco Initial Configuration": {
+//           "prefix": "cInitial",                // Prefix specified here should begin with the letter "c"
+//           "scope": "cisco",
+//           "body": [
+//               "hostname",
+//               "... 
+//           ]
+//       }
+//
+// - Organize snippets into the following categories:
+//      - Initial Configurations
+//      - Layer 2 Configurations
+//      - Layer 3 Configurations
+//      - Protocol Configurations
+//
+// Define each snippet with a name, prefix, body, and description. 
+// The prefix activates the snippet, and the body expands and inserts it. 
+// Use $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+// Placeholders with identical IDs are linked.
+// Example:
+// "Print to console": {
+//     "prefix": "log",
+//     "scope": "javascript",
+//     "body": [
+//         "console.log('$1');",
+//         "$2"
+//     ],
+//     "description": "Log output to console"
+// }
+//
+// If you wish to leave verbose comments explaining commands to refresh your memory make two objects one with no notes and the other with notes with the prefix ending int "_info"
+// Example:
+//   NO NOTES:
+//     "VLAN Creation": {
+//    "prefix": "vlan",
+//    "scope": "cisco",
+//    "body": [
+//        "vlan ",
+//        "name <NAME>"
+//    ],
+//    "description": "Cisco vlan creation"
+//  },
+//
+//   NOTES:
+//     "VLAN Creation with info": {
+//    "prefix": "vlan_info",                      // Prefix has "_info" appended to it because info was included  
+//    "scope": "cisco",
+//    "body": [
+//        "! Choose a VLAN ID from 1-4094. Ensure this number does not conflict with an existing VLAN ID",
+//        "vlan ",
+//          "! Common practice is to name the vlan based on the department of the business and data it will be used for. EX: AccountData. Or for the specific Segmentation item. EX: PLC_352",
+//          "name <NAME>"
+//    ],
+//    "description": "Cisco vlan creation"
+//  },
+//
+// Initial Configurations
+// -----------------------
+// This section is dedicated to Cisco Initial Configurations. Include any pertinent notes to assist in the configuration process.
+
+
     "Cisco Initial Configuration": {
-        "prefix": "cInitial",
+        "prefix": "cInit",
+        "scope": "cisco",
+        "body": [
+            "enable",
+            "configure terminal",
+            "login block-for 20 attempts 3 within 30",
+            "ip name-server <DNS server IP address>",
+            "no ip domain-lookup",
+            "ntp server <DOMAIN NAME or IP>, <OPTIONAL DOMAIN NAME or IP>",
+            "hostname <DEVICE NAME>",
+            "enable secret level <Add privilege level> <ENABLE PASSWORD>",
+            "username <DEVICE USERNAME> algorithm-type sha256 secret <USERNAME PASSWORD>",
+            "line con 0",
+            "  logging synchronous",
+            "  login local",
+            "line vty 0 15",
+            "  transport input ssh",
+            "  transport output ssh",
+            "  logging synchronous",
+            "  login local"
+        ],
+        "description": "Cisco Initial Configuration"
+    },
+    "Cisco Initial Configuration L2 Switch": {
+        "prefix": "cInitL2",
+        "scope": "cisco",
+        "body": [
+            "enable",
+            "configure terminal",
+            "login block-for 20 attempts 3 within 30",
+            "ip name-server <DNS server IP address>",
+            "no ip domain-lookup",
+            "ntp server <DOMAIN NAME or IP>, <OPTIONAL DOMAIN NAME or IP>",
+            "hostname <DEVICE NAME>",
+            "ip default-gateway <GATEWAY IP (MGMT)>",
+            "enable secret level <Add privilege level> <ENABLE PASSWORD>",
+            "username <DEVICE USERNAME> algorithm-type sha256 secret <USERNAME PASSWORD>",
+            "line con 0",
+            "  logging synchronous",
+            "  login local",
+            "line vty 0 15",
+            "  transport input ssh",
+            "  transport output ssh",
+            "  logging synchronous",
+            "  login local"
+        ],
+        "description": "Cisco Initial Configuration"
+    },
+    "Cisco Initial Configuration L3 Switch": {
+        "prefix": "cInit",
+        "scope": "cisco",
+        "body": [
+            "enable",
+            "configure terminal",
+            "login block-for 20 attempts 3 within 30",
+            "ip name-server <DNS server IP address>",
+            "no ip domain-lookup",
+            "ntp server <DOMAIN NAME or IP>, <OPTIONAL DOMAIN NAME or IP>",
+            "hostname <DEVICE NAME>",
+            "ip routing",
+            "! ip route 0.0.0.0 0.0.0.0 <NEXT HOP IP>",
+            "enable secret level <Add privilege level> <ENABLE PASSWORD>",
+            "username <DEVICE USERNAME> algorithm-type sha256 secret <USERNAME PASSWORD>",
+            "line con 0",
+            "  logging synchronous",
+            "  login local",
+            "line vty 0 15",
+            "  transport input ssh",
+            "  transport output ssh",
+            "  logging synchronous",
+            "  login local"
+        ],
+        "description": "Cisco Initial Configuration"
+    },
+    "Banner motd": {
+        "prefix": "cbannerMotd",
+        "scope": "cisco",
+        "body": [
+            "banner motd #WARNING: AUTHORIZED ACCESS ONLY",
+            "You are accessing a private computer system. This system, including all related equipment, networks, and",
+            "network devices (specifically including Internet access), is provided only for authorized use.",
+            "Unauthorized use may subject you to criminal prosecution. Evidence of unauthorized use collected during",
+            "monitoring may be used for administrative, criminal, or other adverse action. Use of this system constitutes",
+            "consent to monitoring for these purposes.",
+            "By continuing to use this system, you acknowledge that you understand and agree to these terms.#"
+        ],
+        "description": "Used to add a warning to users accessing machine"
+    },
+    "Banner Login": {
+        "prefix": "cbannerLogin",
+        "scope": "cisco",
+        "body": [
+            "banner Login #",
+            "<--Write Descriptive information between the hashes EX:",
+            "Building: 02",
+            "Closet: MDF01",
+            "Rack: 05",
+            "Unit: 30",
+            "--> #"
+        ],
+        "description": "Adds information regarding device"
+    },
+    "VLAN Creation": {
+        "prefix": "vlan",
+        "scope": "cisco",
+        "body": [
+            "vlan ",
+            "name <NAME>"
+        ],
+        "description": "Cisco vlan creation"
+    },
+    "Host names": {
+        "prefix": "cHost",
+        "scope": "cisco",
+        "body": [
+            "ip host <NAME FOR HOST, EX: rtrCA01> <HOST_IP_ADDRESS>"
+        ],
+        "description": "local machine DNS adds host name to IP address"
+    },
+
+    "Cisco Initial Configuration with info": {
+        "prefix": "cInit_info",
         "scope": "cisco",
         "body": [
             "! Initial configuration for Cisco devices",
@@ -95,55 +242,7 @@
         ],
         "description": "Cisco Initial Configuration"
     },
-    
-    "Banner motd": {
-        "prefix": "cbannerMotd",
-        "scope": "cisco",
-        "body": [
-            "banner motd #WARNING: AUTHORIZED ACCESS ONLY",
-            "You are accessing a private computer system. This system, including all related equipment, networks, and",
-            "network devices (specifically including Internet access), is provided only for authorized use.",
-            "Unauthorized use may subject you to criminal prosecution. Evidence of unauthorized use collected during",
-            "monitoring may be used for administrative, criminal, or other adverse action. Use of this system constitutes",
-            "consent to monitoring for these purposes.",
-            "",
-            "By continuing to use this system, you acknowledge that you understand and agree to these terms.#"
-        ],
-        "description": "Used to add a warning to users accessing machine"
-    },
-    "Banner Login": {
-        "prefix": "cbannerLogin",
-        "scope": "cisco",
-        "body": [
-            "banner Login #",
-            "",
-            "<--Write Descriptive information between the hashes EX:",
-            "Building: 02",
-            "Closet: MDF01",
-            "Rack: 05",
-            "Unit: 30",
-            "--> #"
-        ],
-        "description": "Adds information regarding device"
-    },
-    "VLAN Creation": {
-        "prefix": "vlan",
-        "scope": "cisco",
-        "body": [
-            "vlan ",
-            "name <NAME>",
-        ],
-        "description": "Cisco vlan creation"
-    },
-    "Host names": {
-        "prefix": "cHost",
-        "scope": "cisco",
-        "body": [
-            "ip host <NAME FOR HOST, EX: rtrCA01> <HOST_IP_ADDRESS>",
-            " "
-        ],
-        "description": "local machine DNS adds host name to IP address"
-    },
+
     // you can add more Intial configurtions above here
     // This is a template for the PROTOCOL, L3, L2, and INITIAL sections. Do not remove. Copy and paste if you wish to use.
     " ": {
@@ -163,6 +262,7 @@
     // -----------------------
     // This section is for cisco Layer 2 configurations. Feel free to add notes that are helpful to know when adding configurations
     //
+
     "Layer 2 SVI creation": {
         "prefix": "cL2Svi",
         "scope": "cisco",
@@ -272,7 +372,6 @@
             "   shutdown",
             "   no shutdown",
             "exit",
-            "",
             "interface range <portX/X-X>",
             "   description to<Some location>-PortChannel",
             "   switchport trunk encapsulation dot1q",
@@ -281,7 +380,7 @@
             "   channel-group <PORT CHANNEL NUMBER> mode active",
             "   shutdown",
             "   no shutdown",
-            "exit",
+            "exit"
         ],
         "description": "Layer 2 Port-Channel creation"
     },
@@ -290,13 +389,27 @@
         "scope": "cisco",
         "body": [
             "lldp run",
-            "",
-            "interface ethernet X/Y ",
-            "   lldp transmit",
-            "   lldp receive"
+            "interface ethernet X/Z",
+            "   no lldp transmit",
+            "   no lldp receive"
         ],
         "description": "Initial lldp and example"
     },
+
+    "Layer 2 SVI creation with info": {
+        "prefix": "cL2Svi",
+        "scope": "cisco",
+        "body": [
+            "interface vlan <VLAN_ID>",
+            "   description MGMT",
+            "   ip address <L2 SVI MGMT IP> <SUBNET MASK>",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Cisco SVI syntax for Layer 2"
+    },
+
     // you can add more Layer 2 configurations above here
     // This is a template for the PROTOCOL, L3, L2, and INITIAL sections. Do not remove. Copy and paste if you wish to use.
     " ": {
@@ -316,21 +429,21 @@
     // ----------------------
     // This section is for cisco Layer 3 configurations. Feel free to add notes that are helpful to know when adding configurations
     //
-    "Layer 3 SVI creation": {
-        "prefix": "cL3Svi",
+        "Layer 3 HSRP SVI (gateways) creation with info": {
+        "prefix": "cL3Svi_info",
         "scope": "cisco",
         "body": [
             "!     FOR HSRP",
             "!     -------------------------------------",
             "!     SET: Preempt if ACTIVE switch only.",
             "!     SET: priority, Higher == More prefered",
-            "!     DEFAULT GATEWAY VLAN_ID is a good convention for ID number. Highlight \"<DEFAULT GATEWAY VLAN_ID>\" press ctrl+F2 to change all instances",
+            "!     DEFAULT GATEWAY VLAN_ID is a good convention for ID number.",
             "",
             "vlan <DEFAULT GATEWAY VLAN_ID>",
             "name <DEFAULT GATEWAY NAME>",
             "",
             "interface vlan <DEFAULT GATEWAY VLAN_ID>",
-            "   description <CAMPUS DATE | CAMPUSVOICE | NMS | FINANCE>",
+            "   description <CAMPUS DATA | CAMPUS VOICE | NMS | FINANCE>",
             "   ip address <DEFAULT GATEWAY IP> <DEFAULT GATEWAY SUBNET MASK>",
             "   ip helper-address <DHCP POOL IP ADDRESS>",
             "   standby <DEFAULT GATEWAY VLAN_ID> ip <VIP>",
@@ -343,18 +456,57 @@
         ],
         "description": "Cisco SVI syntax for Layer 3"
     },
-    "Layer 3 SVI creation": {
-        "prefix": "cL3SviVRRP",
+    "Layer 3 HSRP SVI (gateways) creation": {
+        "prefix": "cL3Svi",
+        "scope": "cisco",
+        "body": [
+            "vlan <DEFAULT GATEWAY VLAN_ID>",
+            "name <DEFAULT GATEWAY NAME>",
+            "interface vlan <DEFAULT GATEWAY VLAN_ID>",
+            "   description <CAMPUS DATA | CAMPUS VOICE | NMS | FINANCE>",
+            "   ip address <DEFAULT GATEWAY IP> <DEFAULT GATEWAY SUBNET MASK>",
+            "   ip helper-address <DHCP POOL IP ADDRESS>",
+            "   standby <DEFAULT GATEWAY VLAN_ID> ip <VIP>",
+            "   standby <DEFAULT GATEWAY VLAN_ID> priority <110>",
+            "   standby <DEFAULT GATEWAY VLAN_ID> timers <Seconds for next Hello> <Hold time before switching to backup>",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Cisco SVI syntax for Layer 3"
+    },
+    "Layer 3 VRRP SVI creation with info": {
+        "prefix": "cL3SviVRRP_info",
         "scope": "cisco",
         "body": [
             "!     FOR VRRP",
             "!     -------------------------------------",
             "!     SET: priority, Higher == More preferred",
-            "!     DEFAULT GATEWAY VLAN_ID is a good convention for ID number. Highlight \"<DEFAULT GATEWAY VLAN_ID>\" press ctrl+F2 to change all instances",
+            "!     DEFAULT GATEWAY VLAN_ID is a good convention for VRRP_GROUP_NUMBER number. Its limited to 255 on VRRP.",
             "",
             "vlan <DEFAULT GATEWAY VLAN_ID>",
             "name <DEFAULT GATEWAY NAME>",
             "",
+            "interface Vlan<DEFAULT GATEWAY VLAN_ID>",
+            "   description <CAMPUS DATA | CAMPUS VOICE | NMS | FINANCE>",
+            "   ip address <DEFAULT GATEWAY IP> <DEFAULT GATEWAY SUBNET MASK>",
+            "   ip helper-address <DHCP POOL IP ADDRESS>",
+            "   vrrp <VRRP_GROUP_NUMBER> ip <VIP>",
+            "   vrrp <VRRP_GROUP_NUMBER> priority 110",
+            "   vrrp <VRRP_GROUP_NUMBER> timers advertise <ADVERTISE_INTERVAL>",
+            "   vrrp <VRRP_GROUP_NUMBER> preempt",
+            "   shutdown",
+            "   no shutdown",
+            "exit"
+        ],
+        "description": "Cisco SVI syntax for Layer 3"
+    },
+    "Layer 3 VRRP SVI creation": {
+        "prefix": "cL3SviVRRP",
+        "scope": "cisco",
+        "body": [
+            "vlan <DEFAULT GATEWAY VLAN_ID>",
+            "name <DEFAULT GATEWAY NAME>",
             "interface Vlan<DEFAULT GATEWAY VLAN_ID>",
             "   description <CAMPUS DATA | CAMPUS VOICE | NMS | FINANCE>",
             "   ip address <DEFAULT GATEWAY IP> <DEFAULT GATEWAY SUBNET MASK>",
@@ -428,8 +580,6 @@
         "prefix": "cl3Portchannel",
         "scope": "cisco",
         "body": [
-            "! Highlight \"<PORT CHANNEL NUMBER>\" press ctrl+F2 to change all instances",
-            "",
             "interface port-channel<PORT CHANNEL NUMBER>",
             "   description to <Some location>-PortChannel",
             "   no switchport",
@@ -469,9 +619,8 @@
     // -----------------------
     // This section is for cisco protocols. Feel free to add notes that are helpful to know when adding configurations
 
-    
-    "AAA Configuration": {
-        "prefix": "cAAAConfig",
+    "AAA Configuration with info": {
+        "prefix": "cAAAConfig_info",
         "scope": "cisco",
         "body": [
             "! Configure AAA (Authentication, Authorization, and Accounting)",
@@ -485,8 +634,19 @@
         ],
         "description": "General AAA Configuration"
     },
-    "RADIUS Configuration": {
-        "prefix": "cRadiusConfig",
+    "AAA Configuration": {
+        "prefix": "cAAAConfig",
+        "scope": "cisco",
+        "body": [
+            "aaa new-model",
+            "aaa session-id common",
+            "device-sensor accounting",
+            "device-sensor notify all-changes"
+        ],
+        "description": "General AAA Configuration"
+    },
+    "RADIUS Configuration with info": {
+        "prefix": "cRadiusConfig_info",
         "scope": "cisco",
         "body": [
             "! Configure AAA group for RADIUS server",
@@ -507,7 +667,7 @@
             "",
             "! Configure dynamic authorization server for RADIUS",
             "aaa server radius dynamic-author",
-            "  client 192.168.1.100 server-key RADIUSSecretKey",
+            "  client <SERVER IP ADDRESS> server-key RADIUSSecretKey",
             "",
             "! Configure RADIUS server attributes",
             "radius-server vsa send accounting",
@@ -537,13 +697,57 @@
             "radius-server attribute 82 include-in-access-req",
             "",
             "! Define RADIUS server",
-            "radius-server host 192.168.1.100 auth-port 1812 acct-port 1813 key RADIUSSecretKey",
+            "radius-server host <SERVER IP ADDRESS> auth-port 1812 acct-port 1813 key RADIUSSecretKey",
             "radius-server key RADIUSSecretKey"
         ],
         "description": "RADIUS Configuration"
     },
-    "TACACS+ Configuration": {
-        "prefix": "cTacacsConfig",
+    "RADIUS Configuration": {
+        "prefix": "cRadiusConfig",
+        "scope": "cisco",
+        "body": [
+            "aaa group server radius MY_RADIUS_GROUP",
+            "  server name MY_RADIUS_SERVER",
+            "aaa authentication dot1x default group MY_RADIUS_GROUP",
+            "aaa authorization network default group MY_RADIUS_GROUP",
+            "aaa authorization auth-proxy default group MY_RADIUS_GROUP",
+            "aaa accounting update periodic 15",
+            "aaa accounting auth-proxy default start-stop group MY_RADIUS_GROUP",
+            "aaa accounting dot1x default start-stop group MY_RADIUS_GROUP",
+            "aaa server radius dynamic-author",
+            "  client <SERVER IP ADDRESS> server-key RADIUSSecretKey",
+            "radius-server vsa send accounting",
+            "radius-server vsa send authentication",
+            "radius-server attribute 1 format ietf upper-case",
+            "radius-server attribute 4 include-in-access-req",
+            "radius-server attribute 5 include-in-access-req",
+            "radius-server attribute 6 on-for-login-auth",
+            "radius-server attribute 6 support-multiple",
+            "radius-server attribute 7 include-in-access-req",
+            "radius-server attribute 8 include-in-access-req",
+            "radius-server attribute 11 include-in-access-req",
+            "radius-server attribute 12 include-in-access-req",
+            "radius-server attribute 24 include-in-access-req",
+            "radius-server attribute 25 access-request include",
+            "radius-server attribute 26 include-in-access-req",
+            "radius-server attribute 31 mac format ietf upper-case",
+            "radius-server attribute 31 send nas-port-detail",
+            "radius-server attribute 32 include-in-access-req",
+            "radius-server attribute 44 include-in-access-req",
+            "radius-server attribute 61 include-in-access-req",
+            "radius-server attribute 62 include-in-access-req",
+            "radius-server attribute 64 include-in-access-req",
+            "radius-server attribute 65 include-in-access-req",
+            "radius-server attribute 66 include-in-access-req",
+            "radius-server attribute 81 include-in-access-req",
+            "radius-server attribute 82 include-in-access-req",
+            "radius-server host <SERVER IP ADDRESS> auth-port 1812 acct-port 1813 key RADIUSSecretKey",
+            "radius-server key RADIUSSecretKey"
+        ],
+        "description": "RADIUS Configuration"
+    },
+    "TACACS+ Configuration with info": {
+        "prefix": "cTacacsConfig_info",
         "scope": "cisco",
         "body": [
             "! Configure AAA (Authentication, Authorization, and Accounting)",
@@ -573,12 +777,66 @@
         ],
         "description": "TACACS+ Configuration"
     },
-    
+    "TACACS+ Configuration": {
+        "prefix": "cTacacsConfig",
+        "scope": "cisco",
+        "body": [
+            "aaa new-model",
+            "aaa group server tacacs+ MY_TACACS_GROUP",
+            "  server name MY_TACACS_SERVER",
+            "aaa authentication login LOGIN_USING_TACACS group MY_TACACS_GROUP",
+            "aaa authentication enable default group MY_TACACS_GROUP",
+            "aaa authorization exec default group MY_TACACS_GROUP",
+            "aaa authorization commands 15 default group MY_TACACS_GROUP",
+            "tacacs server MY_TACACS_SERVER",
+            " address ipv4 <IP ADDRESS>",
+            " key <TACACS KEY>",
+            "line vty 0 15",
+            " login authentication LOGIN_USING_TACACS",
+            " privilege level 1"
+        ],
+        "description": "TACACS+ Configuration"
+    },
+    "Configure SNMP with info": {
+        "prefix": "cpSNMP_info",
+        "scope": "cisco",
+        "body": [
+            "! Run ?snmp command for more information about configuring SNMP",
+            "",
+            "! Configure SNMP community string with read-only access and access control",
+            "snmp-server community <COMMUNITY-STRING> RO <ACCESS-LIST-NUMBER>",
+            "",
+            "! Configure SNMP trap source interface",
+            "snmp-server trap-source <SOURCE-INTERFACE>",
+            "",
+            "! Configure SNMP informs source interface",
+            "snmp-server source-interface informs <INFORMS-INTERFACE>",
+            "",
+            "! Enable SNMP traps for link state changes",
+            "snmp-server enable traps snmp linkdown linkup",
+            "",
+            "! Enable SNMP traps for MAC notification changes",
+            "snmp-server enable traps mac-notification change move threshold",
+            "",
+            "! Configure SNMP host for receiving traps",
+            "snmp-server host <HOST-IP-ADDRESS> version 2c <COMMUNITY-STRING> [mac-notification]",
+            "",
+            "! Define access control list (ACL) for SNMP",
+            "access-list <ACCESS-LIST-NUMBER> permit <ALLOWED-SOURCE-IP>",
+            "access-list <ACCESS-LIST-NUMBER> deny any",
+            "",
+            "! Apply ACL to SNMP community string",
+            "snmp-server community <COMMUNITY-STRING> use-acl <ACCESS-LIST-NUMBER>",
+            "",
+            "! Enable SNMP on the device",
+            "snmp-server enable"
+        ],
+        "description": "Configure SNMP settings in Cisco devices"
+    },
     "Configure SNMP": {
         "prefix": "cpSNMP",
         "scope": "cisco",
         "body": [
-            "! Run ?snmp command for more information about configuring SNMP",
             "snmp-server community <COMMUNITY-STRING> RO <ACCESS-LIST-NUMBER>",
             "snmp-server trap-source <SOURCE-INTERFACE>",
             "snmp-server source-interface informs <INFORMS-INTERFACE>",
@@ -592,12 +850,11 @@
         ],
         "description": "Configure SNMP settings in Cisco devices"
     },
- 
-    "IP SLA icmp-echo configurations": {
-        "prefix": "cpIpSlaIcmpEcho",
+    "IP SLA icmp-echo configurations with info": {
+        "prefix": "cpIpSlaIcmpEcho_info",
         "scope": "cisco",
         "body": [
-            "! icmp-echo option. There are ",
+            "! icmp-echo for SLA",
             "! \"track\" tracking number and \"ip sla\" numbers are arbitrary",
             "ip sla <ip sla ID#>",
             "   icmp-echo <ip address to ping> source-ip <IP>",
@@ -615,8 +872,22 @@
         ],
         "description": "IP SLA icmp-echo configurations"
     },
-    "Rapid Per VLAN Spanning Tree +": {
-        "prefix": "cpRpvst+",
+    "IP SLA icmp-echo configurations": {
+        "prefix": "cpIpSlaIcmpEcho",
+        "scope": "cisco",
+        "body": [
+            "ip sla <ip sla ID#>",
+            "   icmp-echo <ip address to ping> source-ip <IP>",
+            "   frequency <# in Seconds (10 is normal)>",
+            "exit",
+            "ip sla schedule <ip sla ID#> life forever start-time now",
+            "track <Track ID#> ip sla <ip sla ID#> reachability",
+            "ip route <IP> <SUBNET> <NEXT HOP> track <Track ID#>",
+        ],
+        "description": "IP SLA icmp-echo configurations"
+    },
+    "Rapid Per VLAN Spanning Tree + with info": {
+        "prefix": "cpRpvst+_info",
         "scope": "cisco",
         "body": [
             "spanning-tree mode rapid-pvst",
@@ -626,18 +897,30 @@
             "! Good convention = Lower priority for all odds on CORE 1 and all evens on CORE 2",
             "vlan <VLAN ID>",
             "name <CampusData>",
-            "spanning-tree vlan <VLAN ID, VLAN ID2, VLAN ID3, ETC> priority 0",
+            "spanning-tree vlan <VLAN ID, VLAN ID2, VLAN ID3, ...> priority 0",
         ],
         "description": "Rapid Per VLAN Spanning Tree + creation"
     },
+    "Rapid Per VLAN Spanning Tree +": {
+        "prefix": "cpRpvst+",
+        "scope": "cisco",
+        "body": [
+            "spanning-tree mode rapid-pvst",
+            "vlan <VLAN ID>",
+            "name <CampusData>",
+            "spanning-tree vlan <VLAN ID, VLAN ID2, VLAN ID3, ...> priority 0",
+        ],
+        "description": "Rapid Per VLAN Spanning Tree + creation"
+    },
+
     "HSRP standby commands": {
         "prefix": "cpStandby",
         "scope": "cisco",
         "body": [
-            "standby <ID> ip <IP>",
-            "standby <ID> priority 110",
-            "standby <ID> timers <Seconds for next Hello> <Hold time before switching to backup>",
-            "!standby <ID> preempt"
+            "standby <DEFAULT GATEWAY VLAN_ID> ip <VIP>",
+            "standby <DEFAULT GATEWAY VLAN_ID> priority 110",
+            "standby <DEFAULT GATEWAY VLAN_ID> timers <Seconds for next Hello> <Hold time before switching to backup>",
+            "!standby <DEFAULT GATEWAY VLAN_ID> preempt"
         ],
         "description": "HSRP standby commands"
     },
@@ -648,7 +931,7 @@
             "vrrp <GROUP_NUMBER> ip <VIP>",
             "vrrp <GROUP_NUMBER> priority 110",
             "vrrp <GROUP_NUMBER> timers advertise <ADVERTISE_INTERVAL>",
-            "vrrp <GROUP_NUMBER> preempt"
+            "!vrrp <GROUP_NUMBER> preempt"
         ],
         "description": "VRRP commands"
     },
@@ -656,6 +939,7 @@
         "prefix": "cpOspf",
         "scope": "cisco",
         "body": [
+            "! Delete the options you dont need.",
             "router ospf <PROCESS ID>",
             "   router-id <IP>",
             "   redistribute connected subnets",
@@ -669,9 +953,9 @@
             "   area <AREA ID> authentication message-digest",
             "   !passive-interface <GigabitEthernet0/1>",
             "   !passive-interface default",
-            "   !no passive-interface vlan <30>",
-            "   !no passive-interface <po14>",
-            "   !no passive-interface <G2/1>",
+            "   !no passive-interface <VLAN INTERFACE>",
+            "   !no passive-interface <PORT CHANNEL INTERFACE>",
+            "   !no passive-interface <INTERFACE>",
             "exit",
         ],
         "description": "OSPF Area level Configuration"
@@ -680,7 +964,7 @@
         "prefix": "cpOspfInterface",
         "scope": "cisco",
         "body": [
-            "! Illustrates what can be done with the interface configuration",
+            "! Illustrates some options for the interface configuration",
             "interface <INTERFACE>",
             "   ip ospf <PROCESS_ID> area <AREA>",
             "   ip ospf priority <PRIORITY>",
@@ -768,6 +1052,37 @@
         ],
         "description": "Prefix List and Route Map Configuration"
     },
+    "IPSec Tunnel Configuration with info": {
+        "prefix": "cpIPSecTunnel_info",
+        "scope": "cisco",
+        "body": [
+            "! Configure ISAKMP (IKE Phase 1) policy with strong encryption",
+            "crypto isakmp policy 10",
+            "   encryption aes 256                      ! AES-256 for strong encryption",
+            "   authentication pre-share",
+            "   group 14                                ! Diffie-Hellman Group 14 for secure key exchange",
+            "   lifetime 86400                          ! Set SA lifetime to 86400 seconds (24 hours)",
+            "",
+            "! Configure ISAKMP key (pre-shared key)",
+            "crypto isakmp key <KEY> address <PEER_IP_ADDRESS>",
+            "",
+            "! Configure IPsec (IKE Phase 2) transform-set with advanced encryption and integrity",
+            "crypto ipsec transform-set MYSET esp-aes 256 esp-sha256-hmac",
+            "   mode tunnel",
+            "",
+            "! Create crypto map and apply settings",
+            "crypto map <MYMAP> 10 ipsec-isakmp",
+            "   set peer <PEER_IP_ADDRESS>",
+            "   set transform-set MYSET",
+            "   match address <ACCESS_CONTROL_LIST>",
+            "",
+            "! Apply crypto map to the interface",
+            "interface <INTERFACE>",
+            "   crypto map <MYMAP>",
+            "exit"
+        ],
+        "description": "IPSec Tunnel Configuration with advanced encryption"
+    },
     "IPSec Tunnel Configuration": {
         "prefix": "cpIPSecTunnel",
         "scope": "cisco",
@@ -776,8 +1091,9 @@
             "   encryption aes 256",
             "   authentication pre-share",
             "   group 14",
+            "   lifetime 86400",
             "crypto isakmp key <KEY> address <PEER_IP_ADDRESS>",
-            "crypto ipsec transform-set MYSET esp-aes 256 esp-sha-hmac",
+            "crypto ipsec transform-set MYSET esp-aes 256 esp-sha256-hmac",
             "   mode tunnel",
             "crypto map <MYMAP> 10 ipsec-isakmp",
             "   set peer <PEER_IP_ADDRESS>",
@@ -785,10 +1101,12 @@
             "   match address <ACCESS_CONTROL_LIST>",
             "interface <INTERFACE>",
             "   crypto map <MYMAP>",
-            "exit",
+            "exit"
         ],
-        "description": "IPSec Tunnel Configuration"
+        "description": "IPSec Tunnel Configuration with advanced encryption"
     },
+
+    
     "NAT Overload Configuration": {
         "prefix": "cpNatOverload",
         "scope": "cisco",
@@ -894,31 +1212,31 @@
         "scope": "cisco",
         "body": [
             "! Configure RADIUS server attributes",
-            "radius-server vsa send accounting                     // Enable sending VSAs in accounting",
-            "radius-server vsa send authentication                 // Enable sending VSAs in authentication",
-            "radius-server attribute 1 format ietf upper-case      // Configure User-Name format and uppercase",
-            "radius-server attribute 4 include-in-access-req       // Include NAS-IP-Address attribute in Access-Request",
-            "radius-server attribute 5 include-in-access-req       // Include NAS-Port attribute in Access-Request",
-            "radius-server attribute 6 on-for-login-auth           // Include Service-Type attribute for login authentication",
-            "radius-server attribute 6 support-multiple            // Support multiple instances of Service-Type attribute",
-            "radius-server attribute 7 include-in-access-req       // Include Framed-Protocol attribute in Access-Request",
-            "radius-server attribute 8 include-in-access-req       // Include Framed-IP-Address attribute in Access-Request",
-            "radius-server attribute 11 include-in-access-req      // Include Filter-Id attribute in Access-Request",
-            "radius-server attribute 12 include-in-access-req      // Include Framed-IP-Address attribute in Access-Request",
-            "radius-server attribute 24 include-in-access-req      // Include State attribute in Access-Request",
-            "radius-server attribute 25 access-request include     // Include Class attribute in Access-Request",
-            "radius-server attribute 26 include-in-access-req      // Include Vendor-Specific attribute in Access-Request",
-            "radius-server attribute 31 mac format ietf upper-case // Configure MAC format and uppercase in Calling-Station-ID",
-            "radius-server attribute 31 send nas-port-detail       // Send additional NAS port detail in Calling-Station-ID",
-            "radius-server attribute 32 include-in-access-req      // Include Framed-IPv6-Prefix attribute in Access-Request",
-            "radius-server attribute 44 include-in-access-req      // Include NAS-IPv6-Address attribute in Access-Request",
-            "radius-server attribute 61 include-in-access-req      // Include NAS-Port-Type attribute in Access-Request",
-            "radius-server attribute 62 include-in-access-req      // Include Port-Limit attribute in Access-Request",
-            "radius-server attribute 64 include-in-access-req      // Include Tunnel-Type attribute in Access-Request",
-            "radius-server attribute 65 include-in-access-req      // Include Tunnel-Medium-Type attribute in Access-Request",
-            "radius-server attribute 66 include-in-access-req      // Include Tunnel-Private-Group-ID attribute in Access-Request",
-            "radius-server attribute 81 include-in-access-req      // Include Framed-Management-Protocol attribute in Access-Request",
-            "radius-server attribute 82 include-in-access-req      // Include Framed-Management-Policy-Id attribute in Access-Request",
+            "radius-server vsa send accounting                     ! Enable sending VSAs in accounting",
+            "radius-server vsa send authentication                 ! Enable sending VSAs in authentication",
+            "radius-server attribute 1 format ietf upper-case      ! Configure User-Name format and uppercase",
+            "radius-server attribute 4 include-in-access-req       ! Include NAS-IP-Address attribute in Access-Request",
+            "radius-server attribute 5 include-in-access-req       ! Include NAS-Port attribute in Access-Request",
+            "radius-server attribute 6 on-for-login-auth           ! Include Service-Type attribute for login authentication",
+            "radius-server attribute 6 support-multiple            ! Support multiple instances of Service-Type attribute",
+            "radius-server attribute 7 include-in-access-req       ! Include Framed-Protocol attribute in Access-Request",
+            "radius-server attribute 8 include-in-access-req       ! Include Framed-IP-Address attribute in Access-Request",
+            "radius-server attribute 11 include-in-access-req      ! Include Filter-Id attribute in Access-Request",
+            "radius-server attribute 12 include-in-access-req      ! Include Framed-IP-Address attribute in Access-Request",
+            "radius-server attribute 24 include-in-access-req      ! Include State attribute in Access-Request",
+            "radius-server attribute 25 access-request include     ! Include Class attribute in Access-Request",
+            "radius-server attribute 26 include-in-access-req      ! Include Vendor-Specific attribute in Access-Request",
+            "radius-server attribute 31 mac format ietf upper-case ! Configure MAC format and uppercase in Calling-Station-ID",
+            "radius-server attribute 31 send nas-port-detail       ! Send additional NAS port detail in Calling-Station-ID",
+            "radius-server attribute 32 include-in-access-req      ! Include Framed-IPv6-Prefix attribute in Access-Request",
+            "radius-server attribute 44 include-in-access-req      ! Include NAS-IPv6-Address attribute in Access-Request",
+            "radius-server attribute 61 include-in-access-req      ! Include NAS-Port-Type attribute in Access-Request",
+            "radius-server attribute 62 include-in-access-req      ! Include Port-Limit attribute in Access-Request",
+            "radius-server attribute 64 include-in-access-req      ! Include Tunnel-Type attribute in Access-Request",
+            "radius-server attribute 65 include-in-access-req      ! Include Tunnel-Medium-Type attribute in Access-Request",
+            "radius-server attribute 66 include-in-access-req      ! Include Tunnel-Private-Group-ID attribute in Access-Request",
+            "radius-server attribute 81 include-in-access-req      ! Include Framed-Management-Protocol attribute in Access-Request",
+            "radius-server attribute 82 include-in-access-req      ! Include Framed-Management-Policy-Id attribute in Access-Request"
         ],
         "description": "Configure enhanced attributes for RADIUS server"
     },
@@ -1156,7 +1474,10 @@
             "! Modify the placeholders accordingly.",
             "",
             "! Configure SNMP community string with read-only access",
-            "snmp-server community <COMMUNITY-STRING> RO <ACCESS-LIST-NUMBER>",
+            "snmp-server community <READ ONLY COMMUNITY-STRING> RO <ACCESS-LIST-NUMBER>",
+            "",
+            "! Configure SNMP read-write community string",
+            "snmp-server community <READ WRITE COMMUNITY-STRING> RW <ACCESS-LIST-NUMBER>",
             "",
             "! Specify the source interface for SNMP traps",
             "snmp-server trap-source <SOURCE-INTERFACE>",
@@ -1183,32 +1504,34 @@
         ],
         "description": "How to configure SNMP (Simple Network Management Protocol) settings in Cisco devices"
     },
-    "How to: enable and user Encryption Levels": {
+    "How to: enable and use Encryption Levels": {
         "prefix": "?Password_Encryption",
         "scope": "cisco",
         "body": [
             "Encryption Levels/Syntax",
             "-------------------------",
-            "Type 0: Unencrypted (plaintext). You will not activate \"Service password-encyption\" but you will only use \"password\" command",
-            "Type 5: MD5 hashing. Provides better security and is commonly used for enable secrets. using the \"secret\" keyword enables MD5 encryption",
-            "Type 7: Vigenère cipher. Reversible and considered weak. Used by the service password-encryption command.""Type 8 and Type 9: More secure password hashing algorithms introduced in newer IOS versions. Type 9, for example, uses the scrypt algorithm.",
+            "Type 0: Unencrypted (plaintext). Use the 'password' command.",
+            "Type 5: MD5 hashing. Provides better security. Use the 'secret' keyword.",
+            "Type 7: Vigenère cipher. Reversible and weak. Enabled by 'service password-encryption'.",
+            "Type 8 and Type 9: More secure hashing algorithms (e.g., scrypt). Available in newer IOS versions.",
             "",
-            "!Type 0:",
-            "enable password <PASSWORD>""username <USERNAME> password <PASSWORD>""",
-            "!Type 5:",
-            "Setting Enable \"Secret\" by default uses a form of MD5 hash (Type 5):",
-            "enable secret [password]",
-            "username <USERNAME> secret <PASSWORD>",
-            "",
-            "!type 7 (not recommended, easily reversible)",
-            "service password-encyption",
+            "! Type 0 (Unencrypted):",
             "enable password <PASSWORD>",
             "username <USERNAME> password <PASSWORD>",
             "",
-            "!Type 8-9 (enable does not support these levels. Only for encypting a specific username password)",
-            "username <USERNAME> algorithm-type <scrypt | sha256> secret <PASSWORD>"
+            "! Type 5 (MD5 Hash):",
+            "enable secret <PASSWORD>",
+            "username <USERNAME> secret <PASSWORD>",
+            "",
+            "! Type 7 (Weak, not recommended):",
+            "service password-encryption",
+            "enable password <PASSWORD>",
+            "username <USERNAME> password <PASSWORD>",
+            "",
+            "! Type 8-9 (More secure, for username only):",
+            "username <USERNAME> algorithm-type {scrypt | sha256} secret <PASSWORD>"
         ],
-        "description": "  "
+        "description": "Explanation of different password encryption levels and their usage on Cisco devices"
     },
     // This is a template for the HELP section. Do not remove. Copy and paste if you wish to use.
     "How to: ": {
