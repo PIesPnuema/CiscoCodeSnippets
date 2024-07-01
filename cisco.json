@@ -78,6 +78,7 @@
             "login block-for 20 attempts 3 within 30",
             "ip name-server <DNS server IP address>",
             "no ip domain-lookup",
+            "ip domain-name <YOUR DOMAIN NAME>",
             "ntp server <DOMAIN NAME or IP>, <OPTIONAL DOMAIN NAME or IP>",
             "hostname <DEVICE NAME>",
             "enable secret level <Add privilege level> <ENABLE PASSWORD>",
