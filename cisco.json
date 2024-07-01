@@ -120,7 +120,7 @@
         "description": "Cisco Initial Configuration"
     },
     "Cisco Initial Configuration L3 Switch": {
-        "prefix": "cInit",
+        "prefix": "cInitL3",
         "scope": "cisco",
         "body": [
             "enable",
