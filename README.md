@@ -100,13 +100,6 @@ git clone https://github.com/twoThreeFiveEight/vsCodeSnippets.git
 - Once the repo exists inside your directory you will be able to use the snippets found inside the JSON files.
 
 ## Dependencies 
-##### Cplusplus Snippets
-- You will need to have some LSP like clangd to create a cpp.json file. 
-- I am using C/C++ by Microsoft
-
-![Figure (1-1)](/resources/figure1-1.png)
-Figure (1-1)
-
 ##### Cisco Snippets
 - You will need the Cisco IOS Syntax extension in vsCode to be able to add a JSON file containing the Cisco configurations found inside this repo.
 - I am using the Cisco IOS Syntax extension by Jamiewoodio
