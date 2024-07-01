@@ -36,7 +36,7 @@
 cd C:\Users\<CHANGE THIS TO YOUR USER NAME>\AppData\Roaming\Code\User\snippets
 ```
 
-- If you can't find this file location go to [Cant find the directory?](#Download using ZIP#Cant%20find%20the%20directory?)
+- If you can't find this file location go to[Can't find the directory?](#cant-find-the-directory)
 
 - NOTE: If you already have configurations inside this directory you may want to run the following command inside another directory and  `mv` or `cp`  only the files you wish to add to your existing configuration to not cause duplicate name collisions or linking errors.
 
