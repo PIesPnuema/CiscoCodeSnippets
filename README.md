@@ -6,7 +6,6 @@
 	- [Download using ZIP](#download-using-zip)
 		- [Can't find the directory?](#cant-find-the-directory)
 - [Dependencies](#dependencies)
-	- [Cplusplus Snippets](#cplusplus-snippets)
 	- [Cisco Snippets](#cisco-snippets)
 		- [Install](#install)
 - [Want to make changes and customize your snippets?](#want-to-make-changes-and-customize-your-snippets)
