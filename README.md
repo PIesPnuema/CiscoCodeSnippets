@@ -14,20 +14,28 @@
 - [How to use the snippets](#how-to-use-the-snippets)
 	- [Cisco.json prefix Structure](#ciscojson-prefix-structure)
 
-## About vsCodeSnippets
-- Configure Cisco IOS faster!
-	- I have added useful Cisco code snippets to help rapid configuration development. 
-	- Uses the ? command for useful details regarding the desired configuration. 
-- Code Snippets for vsCode. 
-	- Allows the user to autofill common code sections with short-hand abbreviations.
-	- These abbreviations are configurable to your liking. Click [Here](#want-to-make-changes-and-customize-your-snippets) to see how.
+## About CiscoCodeSnippets
+CiscoCodeSnippets is a powerful tool designed to streamline and accelerate Cisco IOS configuration using Visual Studio Code. By providing a collection of predefined code snippets, it simplifies the process of writing and managing network configurations.
 
+How It Works
+Rapid Configuration Development:
+- The snippets include common Cisco IOS commands, allowing for quick insertion of code blocks.
+- Utilize the ? command for helpful details and options related to specific configurations.
+
+Auto-Fill Code Sections:
+- The snippets are designed with short-hand abbreviations for easy auto-completion.
+- Users can customize these abbreviations to fit their preferences, ensuring a personalized and efficient workflow.
+
+Integration with vsCode:
+- The snippets are stored in JSON files within the vsCode User Snippets directory.
+- Users can easily download and integrate these snippets into their vsCode setup, enhancing their coding environment with Cisco-specific tools.
+- These abbreviations are configurable to your liking. Click [Here](#want-to-make-changes-and-customize-your-snippets) to see how.
 
 ![Exmaple Video](https://media.giphy.com/media/O0l0qpipQXT6WCJ68J/giphy.gif)
 
 
 ## How to Download 
-- Here you will find various methods of downloading. 
+Here you will find various methods of downloading. 
 - The CLI method is best to be able to stay up to date with any improvements using `git pull`. Using the ZIP method you will have to follow the steps found here each time you wish to update the Code Snippet Files.
 
 ### Download using PowerShell CLI via git clone 
