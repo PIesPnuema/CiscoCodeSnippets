@@ -26,13 +26,12 @@ Auto-Fill Code Sections:
 - The snippets are designed with short-hand abbreviations for easy auto-completion.
 - Users can customize these abbreviations to fit their preferences, ensuring a personalized and efficient workflow.
 
+![Exmaple Video](https://media.giphy.com/media/O0l0qpipQXT6WCJ68J/giphy.gif)
+
 Integration with vsCode:
 - The snippets are stored in JSON files within the vsCode User Snippets directory.
 - Users can easily download and integrate these snippets into their vsCode setup, enhancing their coding environment with Cisco-specific tools.
 - These abbreviations are configurable to your liking. Click [Here](#want-to-make-changes-and-customize-your-snippets) to see how.
-
-![Exmaple Video](https://media.giphy.com/media/O0l0qpipQXT6WCJ68J/giphy.gif)
-
 
 ## How to Download 
 Here you will find various methods of downloading. 
