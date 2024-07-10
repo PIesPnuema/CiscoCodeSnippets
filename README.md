@@ -52,13 +52,13 @@ cd C:\Users\<CHANGE THIS TO YOUR USER NAME>\AppData\Roaming\Code\User\snippets
 	
 
 ```
-git clone https://github.com/twoThreeFiveEight/vsCodeSnippets.git
+git clone https://github.com/PIesPnuema/CiscoCodeSnippets.git
 ```
 
 - Once the repo exists inside your directory you will be able to use the snippets found inside the JSON files.
 
 ### Download using ZIP
-- Click on ***<>Code*** drop down box on the [main repo page](https://github.com/twoThreeFiveEight/vsCodeSnippets) 
+- Click on ***<>Code*** drop down box on the [main repo page](https://github.com/PIesPnuema/CiscoCodeSnippets) 
 - open ***File Explorer***
 - Go to your ***Downloads*** directory
 - Download the ZIP file.
@@ -100,7 +100,7 @@ figure (0-4)
 	- NOTE: If you already have configurations inside this directory you may want to run the following command inside another directory and  `mv` or `cp`  only the files you wish to add to your existing configuration. 
 
 ```
-git clone https://github.com/twoThreeFiveEight/vsCodeSnippets.git
+git clone https://github.com/PIesPnuema/CiscoCodeSnippets.git
 ```
 
 - Once the repo exists inside your directory you will be able to use the snippets found inside the JSON files.
