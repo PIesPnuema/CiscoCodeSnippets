@@ -15,7 +15,7 @@
 	- [Cisco.json prefix Structure](#ciscojson-prefix-structure)
 
 ## About CiscoCodeSnippets
-CiscoCodeSnippets is a powerful tool designed to streamline and accelerate Cisco IOS configuration using Visual Studio Code. By providing a collection of predefined code snippets, it simplifies the process of writing and managing network configurations.
+CiscoCodeSnippets is a tool designed to streamline and accelerate Cisco IOS configuration using Visual Studio Code. By providing a collection of predefined code snippets, it simplifies the process of writing and managing network configurations.
 
 How It Works
 Rapid Configuration Development:
