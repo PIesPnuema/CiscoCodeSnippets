@@ -1,6 +1,6 @@
 ## Table of Contents
 
-- [About vsCodeSnippets](#about-vscodesnippets)
+- [About CiscoCodeSnippets](#about-CiscoCodeSnippets)
 - [How to Download](#how-to-download)
 	- [Download using PowerShell CLI via git clone](#download-using-powershell-cli-via-git-clone)
 	- [Download using ZIP](#download-using-zip)
